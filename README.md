@@ -6,7 +6,7 @@ A collection of new, un-implemented activation functions for the PyTorch library
 ## Installation
 
 ```bash
-$ pip install torch_activation
+$ pip install torch-activation
 ```
 
 ## Usage
