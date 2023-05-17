@@ -30,7 +30,7 @@ m(x)
 
 - DELU [[1]](#1)
 
-  ![DELU Activation](https://github.com/alan191006/torch_activation/blob/main/images/activation_images/DeLU.png "DELU")
+  ![DELU Activation](https://github.com/alan191006/torch_activation/blob/main/images/activation_images/DELU.png "DELU")
 
 - CReLU [[2]](#2)
 
