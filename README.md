@@ -26,38 +26,38 @@ m(x)
 
 - ShiLU [[1]](#1)
 
-  ![ShiLU Activation](https://github.com/alan191006/torch_activation/image/activation_image/ShiLU.png "ShiLU")
+  ![ShiLU Activation](https://github.com/alan191006/torch_activation/blob/main/images/activation_images/ShiLU.png "ShiLU")
 
 - DELU [[1]](#1)
 
-  ![DELU Activation](https://github.com/alan191006/torch_activation/image/activation_image/DELU.png "DELU")
+  ![DELU Activation](https://github.com/alan191006/torch_activation/blob/main/images/activation_images/DeLU.png "DELU")
 
 - CReLU [[2]](#2)
 
 - GCU [[3]](#3)
 
-  ![GCU Activation](https://github.com/alan191006/torch_activation/image/activation_image/GCU.png "GCU")
+  ![GCU Activation](https://github.com/alan191006/torch_activation/blob/main/images/activation_images/GCU.png "GCU")
 
 - CosLU [[1]](#1)
 
-  ![CosLU Activation](https://github.com/alan191006/torch_activation/image/activation_image/CosLU.png "CosLU")
+  ![CosLU Activation](https://github.com/alan191006/torch_activation/blob/main/images/activation_images/CosLU.png "CosLU")
 
 - CoLU [[4]](#4)
 
-  ![CoLU Activation](https://github.com/alan191006/torch_activation/image/activation_image/CoLU.png "CoLU")
+  ![CoLU Activation](https://github.com/alan191006/torch_activation/blob/main/images/activation_images/CoLU.png "CoLU")
 
 - ReLUN [[1]](#1)
 
-  ![ReLUN Activation](https://github.com/alan191006/torch_activation/image/activation_image/ReLUN.png "ReLUN")
+  ![ReLUN Activation](https://github.com/alan191006/torch_activation/blob/main/images/activation_images/ReLUN.png "ReLUN")
 
 
 - SquaredReLU [[5]](#5)
 
-  ![SquaredReLU Activation](https://github.com/alan191006/torch_activation/image/activation_image/SquaredReLU.png "SquaredReLU")
+  ![SquaredReLU Activation](https://github.com/alan191006/torch_activation/blob/main/images/activation_images/SquaredReLU.png "SquaredReLU")
 
 - ScaledSoftSign [[1]](#1)
 
-  ![ScaledSoftSign Activation](https://github.com/alan191006/torch_activation/image/activation_image/ScaledSoftSign.png "ScaledSoftSign")
+  ![ScaledSoftSign Activation](https://github.com/alan191006/torch_activation/blob/main/images/activation_images/ScaledSoftSign.png "ScaledSoftSign")
 
   
 ## Future features
