@@ -59,14 +59,18 @@ m(x)
 
   ![ScaledSoftSign Activation](https://github.com/alan191006/torch_activation/blob/63d8db5d4a2ef19e382fc8175bf47b0a5173df3e/images/activation_images/ScaledSoftSign.png "ScaledSoftSign")
 
+- ReGLU [[6]](#6)
+
+- GeGLU [[6]](#6)
+
+- SwiGLU [[6]](#6)
+
+- SeGLU
   
 ## Future features
 * Activations:
   * LinComb
   * NormLinComb
-  * ReGLU
-  * GeGLU
-  * SwiGLU
   * SinLU
   * DReLUs
   * ...
@@ -89,3 +93,6 @@ Vagerwal, A. (2021). Deeper Learning with CoLU Activation. arXiv:2112.12078v1 (c
 
 <a id="5">[5]</a>
 So, D. R., Mańke, W., Liu, H., Dai, Z., Shazeer, N., Le, Q. V. (2022). Primer: Searching for Efficient Transformers for Language Modeling. arXiv:2109.08668v2 (cs)
+
+<a id="6">[6]</a>
+Noam, S. (2020). GLU Variants Improve Transformer. arXiv:2002.05202v1 (cs)

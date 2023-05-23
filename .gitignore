@@ -1,5 +1,3 @@
-torch_activation/glu_family.py
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
