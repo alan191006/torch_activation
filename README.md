@@ -66,11 +66,13 @@ m(x)
 - SwiGLU [[6]](#6)
 
 - SeGLU
+
+- LinComb [[7]](#7)
+
+- NormLinComb [[7]](#7)
   
 ## Future features
 * Activations:
-  * LinComb
-  * NormLinComb
   * SinLU
   * DReLUs
   * ...
@@ -96,3 +98,6 @@ So, D. R., Mańke, W., Liu, H., Dai, Z., Shazeer, N., Le, Q. V. (2022). Primer: 
 
 <a id="6">[6]</a>
 Noam, S. (2020). GLU Variants Improve Transformer. arXiv:2002.05202v1 (cs)
+
+<a id="7">[7]</a>
+Pishchik, E. (2023). Trainable Activations for Image Classification. Preprints.org, 2023010463. DOI: 10.20944/preprints202301.0463.v1

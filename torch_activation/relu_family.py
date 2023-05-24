@@ -43,7 +43,7 @@ class ShiLU(nn.Module):
         self.beta  = nn.Parameter(torch.tensor(beta))
         self.inplace = inplace
 
-    def forward(self, x):
+    def forward(self, x) -> Tensor:
         if self.inplace:
             F.relu_(x)
             x.mul_(self.alpha)
@@ -85,7 +85,7 @@ class CReLU(nn.Module):
         super(CReLU, self).__init__()
         self.dim = dim
 
-    def forward(self, x):
+    def forward(self, x) -> Tensor:
         return F.relu(torch.cat((x, -x), dim=self.dim))
         
         
@@ -123,7 +123,7 @@ class ReLUN(nn.Module):
         self.n = nn.Parameter(torch.tensor(n))
         self.inplace = inplace
 
-    def forward(self, x):
+    def forward(self, x) -> Tensor:
         if self.inplace:
             x.clamp_max_(self.n.data)
             x.relu_()
