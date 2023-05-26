@@ -4,6 +4,8 @@ import torch.nn.functional as F
 
 from torch import Tensor
 
+from torch_activation.utils import plot_activation
+
 
 class GCU(nn.Module):
     r"""

@@ -1,4 +1,4 @@
-from .composite import DELU
+from .composite import DELU, DReLUs
 from .trig import CosLU, GCU, SinLU
 from .lincomb import LinComb, NormLinComb
 from .non_linear import CoLU, ScaledSoftSign
@@ -10,6 +10,7 @@ __all__ = ["ShiLU", "DELU", "CReLU", "GCU",
            "CosLU", "CoLU", "ReLUN",
            "SquaredReLU", "ScaledSoftSign",
            "ReGLU", "GeGLU", "SeGLU", "SwiGLU"
-           "LinComb", "NormLinComb"]
+           "LinComb", "NormLinComb", "SinLU"
+           "DReLUs"]
 
-__version__ = "0.0.1"
+__version__ = "0.1.0"
