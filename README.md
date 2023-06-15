@@ -22,34 +22,36 @@ m(x)
 ```
 
 List of available functions below.
+
+
 ## Available Functions
 
 | Activation Functions   | Equations |
 |-|-|
 | **ReLU Variations** ||
-| ShiLU [[1]](#1) | <img src="https://render.githubusercontent.com/render/math?math=\alpha \cdot \text{ReLU}(x) + \beta ">|
-| ReLUN [[1]](#1) | <img src="https://render.githubusercontent.com/render/math?math=\min(\text{ReLU}(x), n) ">|
-| CReLU [[2]](#2) | <img src="https://render.githubusercontent.com/render/math?math=\text{ReLU}(x) \oplus \text{ReLU}(-x) ">|
-| SquaredReLU [[5]](#5) | <img src="https://render.githubusercontent.com/render/math?math=\text{ReLU}(x)^2 ">|
-| StarReLU [[8]](#8) | <img src="https://render.githubusercontent.com/render/math?math=s \cdot \text{ReLU}(x)^2 + b">|
+| ShiLU [[1]](#1) |$\alpha \cdot \text{ReLU}(x) + \beta$|
+| ReLUN [[1]](#1) |$\min(\text{ReLU}(x), n)$|
+| CReLU [[2]](#2) |$\text{ReLU}(x) \oplus \text{ReLU}(-x)$|
+| SquaredReLU [[5]](#5) |$\text{ReLU}(x)^2$|
+| StarReLU [[8]](#8) |$s \cdot \text{ReLU}(x)^2 + b$|
 | **GLU Variations** ||
-| ReGLU [[6]](#6) | <img src="https://render.githubusercontent.com/render/math?math=\text{ReLU} (xW + b) \odot (xV + c) ">|
-| GeGLU [[6]](#6) | <img src="https://render.githubusercontent.com/render/math?math=\text{GeLU} (xW + b) \odot (xV + c) ">|
-| SwiGLU [[6]](#6) | <img src="https://render.githubusercontent.com/render/math?math=\sigma (xW + b) \odot (xV + c) ">|
-| SeGLU | <img src="https://render.githubusercontent.com/render/math?math=\text{SELU} (xW + b) \odot (xV + c) ">|
+| ReGLU [[6]](#6) |$\text{ReLU} (xW + b) \odot (xV + c)$|
+| GeGLU [[6]](#6) |$\text{GeLU} (xW + b) \odot (xV + c)$|
+| SwiGLU [[6]](#6) |$\sigma (xW + b) \odot (xV + c)$|
+| SeGLU |$\text{SELU} (xW + b) \odot (xV + c)$|
 | **Composite Functions** ||
-| DELU [[1]](#1) | <img src="https://render.githubusercontent.com/render/math?math=\begin{cases} \text{SiLU}(x), x \leqslant 0 \\x(n-1), \text{otherwise} \end{cases} ">|
-| DReLUs | <img src="https://render.githubusercontent.com/render/math?math=\begin{cases} \alpha (e ^ x -1), x \leqslant 0 \\x, \text{otherwise} \end{cases} ">|
+| DELU [[1]](#1) |$\begin{cases} \text{SiLU}(x), x \leqslant 0 \\x(n-1), \text{otherwise} \end{cases}$|
+| DReLUs |$\begin{cases} \alpha (e ^ x -1), x \leqslant 0 \\x, \text{otherwise} \end{cases}$|
 | **Trigonometry Based** ||
-| GCU [[3]](#3) | <img src="https://render.githubusercontent.com/render/math?math=x \cdot \cos(x) ">|
-| CosLU [[1]](#1) | <img src="https://render.githubusercontent.com/render/math?math=(x + \alpha \cdot \cos(\beta x)) \cdot \sigma(x) ">|
-| SinLU | <img src="https://render.githubusercontent.com/render/math?math=(x + \alpha \cdot \sin (\beta x)) \cdot \sigma (x) ">|
+| GCU [[3]](#3) |$x \cdot \cos(x)$|
+| CosLU [[1]](#1) |$(x + \alpha \cdot \cos(\beta x)) \cdot \sigma(x)$|
+| SinLU |$(x + \alpha \cdot \sin (\beta x)) \cdot \sigma (x)$|
 | **Others** ||
-| ScaledSoftSign [[1]](#1) | <img src="https://render.githubusercontent.com/render/math?math=\frac{\alpha \cdot x}{\beta + \|x\|} ">|
-| CoLU [[4]](#4) | <img src="https://render.githubusercontent.com/render/math?math=\frac{x}{1-x \cdot e^{-(x + e^x)}} ">|
+| ScaledSoftSign [[1]](#1) |$\frac{\alpha \cdot x}{\beta + \|x\|}$|
+| CoLU [[4]](#4) |$\frac{x}{1-x \cdot e^{-(x + e^x)}}$|
 | **Linear Combination** ||
-| LinComb [[7]](#7) | <img src="https://render.githubusercontent.com/render/math?math=\sum_{i=1}^{n} w_i \cdot F_i(x) ">|
-| NormLinComb [[7]](#7) | <img src="https://render.githubusercontent.com/render/math?math=\frac{\sum_{i=1}^{n} w_i \cdot F_i(x)}{\|\|W\|\|} ">|
+| LinComb [[7]](#7) |$\sum_{i=1}^{n} w_i \cdot F_i(x)$|
+| NormLinComb [[7]](#7) |$\frac{\sum_{i=1}^{n} w_i \cdot F_i(x)}{\|\|W\|\|}$|
 
 
 ## Contact
