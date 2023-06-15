@@ -1,6 +1,6 @@
-# PyTorch Activation Collection
+# PyTorch Activations Collection
 
-A collection of new, un-implemented activation functions for the PyTorch library. This project is designed for ease of use during experimentation with different activation functions (or simply for fun!). 
+A collection of activation functions for the PyTorch library. This project is designed for ease of use during experimentation with different activation functions (or simply for fun!). 
 
 
 ## Installation
@@ -17,40 +17,43 @@ To use the activation functions, simply import from `torch_activation`:
 from torch_activation import ShiLU
 
 m = ShiLU(inplace=True)
-x = torch.rand(1, 2, 2, 3)
+x = torch.rand(16, 3, 384, 384)
 m(x)
 ```
+
+List of available functions below.
 
 
 ## Available Functions
 
 | Activation Function   | Equation |
-|-----------------------|----------------|
-| ShiLU [[1]](#1)       |                |
-| DELU [[1]](#1)        |                |
-| CReLU [[2]](#2)       |                |
-| GCU [[3]](#3)         |                |
-| CosLU [[1]](#1)       |                |
-| CoLU [[4]](#4)        |                |
-| ReLUN [[1]](#1)       |                |
-| SquaredReLU [[5]](#5) |                |
-| ScaledSoftSign [[1]](#1) |              |
-| ReGLU [[6]](#6)       |                |
-| GeGLU [[6]](#6)       |                |
-| SwiGLU [[6]](#6)      |                |
-| SeGLU                 |                |
-| LinComb [[7]](#7)     |                |
-| NormLinComb [[7]](#7) |                |
-| SinLU                 |                |
-| DReLUs                |                |
-  
-## Future features
-* Activations:
-  * DReLUs
-  * ...
-* Layers:
-  * Depth-wise Convolution
-  * ...
+|-|-|
+| **ReLU Variations** ||
+| ShiLU [[1]](#1) | $$ \alpha \cdot \text{ReLU}(x) + \beta $$ |
+| ReLUN [[1]](#1) | $$ \min(\text{ReLU}(x), n) $$ |
+| CReLU [[2]](#2) | $$ \text{ReLU}(x) \oplus \text{ReLU}(-x) $$ |
+| SquaredReLU [[5]](#5) | $$ \text{ReLU}(x)^2 $$ |
+| StarReLU [[8]](#8) | $$ s \cdot \text{ReLU}(x)^2 + b$$ |
+| **GLU Variations** ||
+| ReGLU [[6]](#6) | $$ \text{ReLU} (xW + b) \odot (xV + c) $$ |
+| GeGLU [[6]](#6) | $$ \text{GeLU} (xW + b) \odot (xV + c) $$ |
+| SwiGLU [[6]](#6) | $$ \sigma (xW + b) \odot (xV + c) $$ |
+| SeGLU | $$ \text{SELU} (xW + b) \odot (xV + c) $$ |
+| **Composite Functions** ||
+| DELU [[1]](#1) | $$ \begin{cases} \text{SiLU}(x), x \leqslant 0 \\x(n-1), \text{otherwise} \end{cases} $$ |
+| DReLUs | $$ \begin{cases} \alpha (e ^ x -1), x \leqslant 0 \\x, \text{otherwise} \end{cases} $$ |
+| **Trigonometry Based** ||
+| GCU [[3]](#3) | $$ x \cdot \cos(x) $$ |
+| CosLU [[1]](#1) | $$ (x + \alpha \cdot \cos(\beta x)) \cdot \sigma(x) $$ |
+| SinLU | $$ (x + \alpha \cdot \sin (\beta x)) \cdot \sigma (x) $$ |
+| **Others** ||
+| ScaledSoftSign [[1]](#1) | $$ \frac{\alpha \cdot x}{\beta + \|x\|} $$ |
+| CoLU [[4]](#4) | $$ \frac{x}{1-x \cdot e^{-(x + e^x)}} $$ |
+| **Linear Combination** ||
+| LinComb [[7]](#7) | $$ \sum_{i=1}^{n} w_i \cdot F_i(x) $$ |
+| NormLinComb [[7]](#7) | $$ \frac{\sum_{i=1}^{n} w_i \cdot F_i(x)}{\|\|W\|\|} $$ |
+
+
 
 ## References
 <a id="1">[1]</a>
@@ -73,3 +76,6 @@ Noam, S. (2020). GLU Variants Improve Transformer. arXiv:2002.05202v1 (cs)
 
 <a id="7">[7]</a>
 Pishchik, E. (2023). Trainable Activations for Image Classification. Preprints.org, 2023010463. DOI: 10.20944/preprints202301.0463.v1
+
+<a id="8">[8]</a>
+Weihao, Y., et al (2022). MetaFormer Baselines for Vision. arXiv:2210.13452v2 (cs)

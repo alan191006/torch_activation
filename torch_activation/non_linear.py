@@ -9,7 +9,7 @@ class CoLU(nn.Module):
     r"""
     Applies the Collapsing Linear Unit activation function:
 
-    :math:`\text{CoLU}(x) = \frac{x}{1-x \mul e^{-(x+e^x)}}`
+    :math:`\text{CoLU}(x) = \frac{x}{1-x \cdot e^{-(x + e^x)}}`
 
     Args:
         inplace: can optionally do the operation in-place. Default: ``False``
@@ -17,8 +17,6 @@ class CoLU(nn.Module):
     Shape:
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
         - Output: :math:`(*)`, same shape as the input.
-
-    .. image:: ../images/activation_images/CoLU.png
 
     Examples::
 
@@ -46,7 +44,7 @@ class ScaledSoftSign(torch.nn.Module):
     r"""
     Applies the ScaledSoftSign activation function:
 
-    :math:`\text{ScaledSoftSign}(x) = \frac{\alpha \mul x}{\beta + |x|}`
+    :math:`\text{ScaledSoftSign}(x) = \frac{\alpha \cdot x}{\beta + \|x\|}`
 
     Args:
         alpha: The initial value of the alpha parameter.
@@ -60,8 +58,6 @@ class ScaledSoftSign(torch.nn.Module):
     Attributes:
         alpha (nn.Parameter): The alpha scaling parameter.
         beta (nn.Parameter): The beta scaling parameter.
-
-    .. image:: ../images/activation_images/ScaledSoftSign.png
 
     Examples:
         >>> m = ScaledSoftSign(alpha=0.5, beta=1.0)

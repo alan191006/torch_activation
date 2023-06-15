@@ -9,7 +9,7 @@ class ShiLU(nn.Module):
     r"""
     Applies the ShiLU activation function:
 
-    :math:`\text{ShiLU}(x) = \alpha * \max(0,x) + \beta`
+    :math:`\text{ShiLU}(x) = \alpha \cdot \text{ReLU}(x) + \beta`
 
     Args:
         alpha : Scaling factor for the positive part of the input. Default: 1.0.
@@ -57,7 +57,7 @@ class CReLU(nn.Module):
     r"""
     Applies the Concatenated Rectified Linear Unit activation function.
 
-    :math:`\text{CReLU}(x) = \max(0,x) \oplus \max(0,-x)`
+    :math:`\text{CReLU}(x) = \text{ReLU}(x) \oplus \text{ReLU}(-x)`
 
     Args:
         dim: Dimension along which to concatenate in the output tensor. Default: 1
@@ -66,8 +66,6 @@ class CReLU(nn.Module):
     Shape:
         - Input: :math:`(*, C, *)` where :math:`*` means any number of additional dimensions
         - Output: :math:`(*, 2C, *)`
-
-    .. image:: ../images/activation_images/CReLU.png
 
     Examples::
 
@@ -92,7 +90,7 @@ class CReLU(nn.Module):
 class ReLUN(nn.Module):
     r"""Applies the element-wise function:
 
-    :math:`\text{ReLUN}(x) = \min(\max(0,x), n)`
+    :math:`\text{ReLUN}(x) = \min(\text{ReLU}(x), n)`
 
     Args:
         n: Upper bound for the function's output. Default is 1.0.
@@ -105,8 +103,6 @@ class ReLUN(nn.Module):
     Attributes:
         n: Upper bound for the function's output. Default is 1.0.
         
-    .. image:: ../images/activation_images/ReLUN.png
-
     Examples::
 
         >>> m = nn.ReLUN(n=6.0) # ReLU6
@@ -144,8 +140,6 @@ class SquaredReLU(nn.Module):
     Shape:
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
         - Output: :math:`(*)`, same shape as the input.
-        
-    .. image:: ../images/activation_images/SquaredReLU.png
 
     Examples::
 
@@ -168,6 +162,54 @@ class SquaredReLU(nn.Module):
             return F.relu_(x).pow_(2)
         else:
             return F.relu(x).pow(2)
+        
+class StarReLU(nn.Module):
+    r"""
+    Applies the element-wise function:
+
+    :math:`\text{StarReLU}(x) = s \cdot \text{ReLU}(x)^2 + b`
+
+    Args:
+        inplace: can optionally do the operation in-place. Default: ``False``
+        s: Scaled factor for StarReLU, shared across channel. Default: 0.8944
+        b: Bias term for StarReLU, shared across channel. Default: -0.4472
+
+    Shape:
+        - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
+        - Output: :math:`(*)`, same shape as the input.
+        
+    .. image:: ../images/activation_images/SquaredReLU.png
+
+    Examples::
+
+        >>> m = nn.StarReLU(s=1.0, b=0.0)
+        >>> x = torch.randn(3, 384, 384)
+        >>> output = m(x)
+
+        >>> m = nn.StarReLU(learnable=True, inplace=True)
+        >>> x = torch.randn(3, 384, 384)
+        >>> m(x)
+    """
+    
+    
+    def __init__(self, s=0.8944, b=-0.4472, learnable=True, inplace=False):
+        super().__init__()
+        self.inplace = inplace
+        if learnable:
+            self.s = nn.Parameter(torch.tensor(s))
+            self.b = nn.Parameter(torch.tensor(b))
+        else:
+            self.s = torch.tensor(s)
+            self.b = torch.tensor(b)
+        
+
+    def forward(self, x) -> Tensor:
+        if self.inplace:
+            return F.relu_(x).pow_(2) \
+                             .mul_(self.s) \
+                             .add_(self.b)
+        else:
+            return self.s * F.relu(x).pow(2) + self.b
     
     
 if __name__ == '__main__':

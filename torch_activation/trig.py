@@ -19,9 +19,7 @@ class GCU(nn.Module):
     Shape:
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
         - Output: :math:`(*)`, same shape as the input.
-
-    .. image:: ../images/activation_images/GCU.png
-
+        
     Examples::
 
         >>> m = nn.GCU()
@@ -62,8 +60,6 @@ class CosLU(nn.Module):
     Attributes:
         alpha: Scaling factor for the cosine term. Default is 1.0.
         beta: Frequency factor for the cosine term. Default is 1.0.
-
-    .. image:: ../images/activation_images/CosLU.png
 
     Examples::
 
@@ -111,8 +107,6 @@ class SinLU(nn.Module):
     Shape:
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
         - Output: :math:`(*)`, same shape as the input.
-
-    .. image:: ../images/activation_images/GCU.png
 
     Examples::
 

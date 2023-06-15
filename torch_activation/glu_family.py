@@ -70,7 +70,7 @@ class SwiGLU(torch.nn.Module):
     r"""
     Applies the SwiGLU activation function, defined as:
 
-    :math:`\text{SwiGLU}(x) =  \text{Swish} (xW + b) \odot (xV + c)`
+    :math:`\sigma(x) =  \text{Swish} (xW + b) \odot (xV + c)`
 
     Args:
         inplace: can optionally do the operation in-place. Default: ``False``

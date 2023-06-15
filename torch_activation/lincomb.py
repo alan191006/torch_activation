@@ -47,7 +47,7 @@ class NormLinComb(nn.Module):
     r"""
     Applies the LinComb activation function:
     
-    :math:`\text{NormLinComb}(x) = \frac{\sum_{i=1}^{n} w_i \cdot F_i(x)}{||W||}`
+    :math:`\text{NormLinComb}(x) = \frac{\sum_{i=1}^{n} w_i \cdot F_i(x)}{\|\|W\|\|}`
     
     Args:
         activation: List of activation functions.
