@@ -1,6 +1,6 @@
-# PyTorch Activations Collection
+# :zap: PyTorch Activations :zap:
 
-A collection of activation functions for the PyTorch library. This project is designed for ease of use during experimentation with different activation functions (or simply for fun!). 
+A collection of activation functions for the PyTorch library. This project is designed for ease of use during experimentation with different activation functions (or simply for fun :wink:). 
 
 
 ## Installation
@@ -26,7 +26,7 @@ List of available functions below.
 
 ## Available Functions
 
-| Activation Function   | Equation |
+| Activation Functions   | Equations |
 |-|-|
 | **ReLU Variations** ||
 | ShiLU [[1]](#1) | $$ \alpha \cdot \text{ReLU}(x) + \beta $$ |
@@ -54,6 +54,12 @@ List of available functions below.
 | NormLinComb [[7]](#7) | $$ \frac{\sum_{i=1}^{n} w_i \cdot F_i(x)}{\|\|W\|\|} $$ |
 
 
+## Contact
+
+Alan Huynh - [LinkedIn](https://www.linkedin.com/in/alan-huynh-64b357194/) - hdmquan@outlook.com
+
+Project Link: [https://github.com/alan191006/torch_activation](https://github.com/alan191006/torch_activation)
+
 
 ## References
 <a id="1">[1]</a>
@@ -79,3 +85,5 @@ Pishchik, E. (2023). Trainable Activations for Image Classification. Preprints.o
 
 <a id="8">[8]</a>
 Weihao, Y., et al (2022). MetaFormer Baselines for Vision. arXiv:2210.13452v2 (cs)
+
+[Back to top](#Installation)
