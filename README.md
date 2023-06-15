@@ -29,39 +29,39 @@ List of available functions below.
 | Activation Functions   | Equations |
 |-|-|
 | **ReLU Variations** ||
-| ShiLU [[1]](#1) |$\alpha \cdot \text{ReLU}(x) + \beta$|
-| ReLUN [[1]](#1) |$\min(\text{ReLU}(x), n)$|
-| CReLU [[2]](#2) |$\text{ReLU}(x) \oplus \text{ReLU}(-x)$|
-| SquaredReLU [[5]](#5) |$\text{ReLU}(x)^2$|
-| StarReLU [[8]](#8) |$s \cdot \text{ReLU}(x)^2 + b$|
+| ShiLU [[1]](#1) | $\alpha \cdot \text{ReLU}(x) + \beta$ |
+| ReLUN [[1]](#1) | $\min(\text{ReLU}(x), n)$ |
+| CReLU [[2]](#2) | $\text{ReLU}(x) \oplus \text{ReLU}(-x)$ |
+| SquaredReLU [[5]](#5) | $\text{ReLU}(x)^2$ |
+| StarReLU [[8]](#8) | $s \cdot \text{ReLU}(x)^2 + b$ |
 
 | **GLU Variations** ||
 |-|-|
-| ReGLU [[6]](#6) |$\text{ReLU} (xW + b) \odot (xV + c)$|
-| GeGLU [[6]](#6) |$\text{GeLU} (xW + b) \odot (xV + c)$|
-| SwiGLU [[6]](#6) |$\sigma (xW + b) \odot (xV + c)$|
-| SeGLU |$\text{SELU} (xW + b) \odot (xV + c)$|
+| ReGLU [[6]](#6) | $\text{ReLU} (xW + b) \odot (xV + c)$ |
+| GeGLU [[6]](#6) | $\text{GeLU} (xW + b) \odot (xV + c)$ |
+| SwiGLU [[6]](#6) | $\sigma (xW + b) \odot (xV + c)$ |
+| SeGLU | $\text{SELU} (xW + b) \odot (xV + c)$ |
 
 | **Composite Functions** ||
 |-|-|
-| DELU [[1]](#1) |$\text{if }  x \leqslant 0 \text{, SiLU}(x); \text{ else, } x(n-1)$|
-| DReLUs |$\text{if }  x \leqslant 0 \text{, } \alpha (e ^ x -1); \text{ else, }  x$|
+| DELU [[1]](#1) | $\text{if }  x \leqslant 0 \text{, SiLU}(x); \text{ else, } x(n-1)$ |
+| DReLUs | $\text{if }  x \leqslant 0 \text{, } \alpha (e ^ x -1); \text{ else, }  x$ |
 
 | **Trigonometry Based** ||
 |-|-|
-| GCU [[3]](#3) |$x \cdot \cos(x)$|
-| CosLU [[1]](#1) |$(x + \alpha \cdot \cos(\beta x)) \cdot \sigma(x)$|
-| SinLU |$(x + \alpha \cdot \sin (\beta x)) \cdot \sigma (x)$|
+| GCU [[3]](#3) | $x \cdot \cos(x)$ |
+| CosLU [[1]](#1) | $(x + \alpha \cdot \cos(\beta x)) \cdot \sigma(x)$ |
+| SinLU | $(x + \alpha \cdot \sin (\beta x)) \cdot \sigma (x)$ |
 
 | **Others** ||
 |-|-|
-| ScaledSoftSign [[1]](#1) |$\frac{\alpha \cdot x}{\beta + \|x\|}$|
-| CoLU [[4]](#4) |$\frac{x}{1-x \cdot e^{-(x + e^x)}}$|
+| ScaledSoftSign [[1]](#1) | $\frac{\alpha \cdot x}{\beta + \|x\|}$ |
+| CoLU [[4]](#4) | $\frac{x}{1-x \cdot e^{-(x + e^x)}}$ |
 
 | **Linear Combination** ||
 |-|-|
-| LinComb [[7]](#7) |$\sum_{i=1}^{n} w_i \cdot F_i(x)$|
-| NormLinComb [[7]](#7) |$\frac{\sum_{i=1}^{n} w_i \cdot F_i(x)}{\|\|W\|\|}$|
+| LinComb [[7]](#7) | $\sum_{i=1}^{n} w_i \cdot F_i(x)$ |
+| NormLinComb [[7]](#7) | $\frac{\sum_{i=1}^{n} w_i \cdot F_i(x)}{\|\|W\|\|}$ |
 
 
 ## Contact
@@ -69,6 +69,8 @@ List of available functions below.
 Alan Huynh - [LinkedIn](https://www.linkedin.com/in/alan-huynh-64b357194/) - hdmquan@outlook.com
 
 Project Link: [https://github.com/alan191006/torch_activation](https://github.com/alan191006/torch_activation)
+
+PyPI Link: [https://pypi.org/project/torch-activation/](https://pypi.org/project/torch-activation/)
 
 
 ## References

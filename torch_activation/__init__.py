@@ -13,4 +13,4 @@ __all__ = ["ShiLU", "DELU", "CReLU", "GCU",
            "LinComb", "NormLinComb", "SinLU"
            "DReLUs", "StarReLU"]
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
