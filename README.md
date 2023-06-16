@@ -26,9 +26,8 @@ List of available functions below.
 
 ## Available Functions
 
-| Activation Functions   | Equations |
-|-|-|
 | **ReLU Variations** ||
+|-|-|
 | ShiLU [[1]](#1) | $\alpha \cdot \text{ReLU}(x) + \beta$ |
 | ReLUN [[1]](#1) | $\min(\text{ReLU}(x), n)$ |
 | CReLU [[2]](#2) | $\text{ReLU}(x) \oplus \text{ReLU}(-x)$ |
@@ -40,18 +39,18 @@ List of available functions below.
 | ReGLU [[6]](#6) | $\text{ReLU} (xW + b) \odot (xV + c)$ |
 | GeGLU [[6]](#6) | $\text{GeLU} (xW + b) \odot (xV + c)$ |
 | SwiGLU [[6]](#6) | $\sigma (xW + b) \odot (xV + c)$ |
-| SeGLU | $\text{SELU} (xW + b) \odot (xV + c)$ |
+| SeGLU [[11]](#11) | $\text{SELU} (xW + b) \odot (xV + c)$ |
 
 | **Composite Functions** ||
 |-|-|
 | DELU [[1]](#1) | $\text{if }  x \leqslant 0 \text{, SiLU}(x); \text{ else, } x(n-1)$ |
-| DReLUs | $\text{if }  x \leqslant 0 \text{, } \alpha (e ^ x -1); \text{ else, }  x$ |
+| DReLUs [[10]](#10) | $\text{if }  x \leqslant 0 \text{, } \alpha (e ^ x -1); \text{ else, }  x$ |
 
 | **Trigonometry Based** ||
 |-|-|
 | GCU [[3]](#3) | $x \cdot \cos(x)$ |
 | CosLU [[1]](#1) | $(x + \alpha \cdot \cos(\beta x)) \cdot \sigma(x)$ |
-| SinLU | $(x + \alpha \cdot \sin (\beta x)) \cdot \sigma (x)$ |
+| SinLU [[9]](#9)| $(x + \alpha \cdot \sin (\beta x)) \cdot \sigma (x)$ |
 
 | **Others** ||
 |-|-|
@@ -63,6 +62,7 @@ List of available functions below.
 | LinComb [[7]](#7) | $\sum_{i=1}^{n} w_i \cdot F_i(x)$ |
 | NormLinComb [[7]](#7) | $\frac{\sum_{i=1}^{n} w_i \cdot F_i(x)}{\|\|W\|\|}$ |
 
+[Back to top](#Installation)
 
 ## Contact
 
@@ -97,5 +97,14 @@ Pishchik, E. (2023). Trainable Activations for Image Classification. Preprints.o
 
 <a id="8">[8]</a>
 Weihao, Y., et al (2022). MetaFormer Baselines for Vision. arXiv:2210.13452v2 (cs)
+
+<a id="9">[9]</9>
+Paul, A., et al (2022). SinLU: Sinu-Sigmoidal Linear Unit. DOI: 10.3390/math10030337
+
+<a id="10">[10]</10>
+Godin, F., et al (2017). Dual Rectified Linear Units (DReLUs): A Replacement for Tanh Activation Functions in Quasi-Recurrent Neural Networks. arXiv: 1707.08214v2 (cs.CL)
+
+<a id="11">[11]</11>
+Pouya, A., & Pegah, A. (2022). ActTensor (Version 1.0.0) [Computer software]. https://github.com/pouyaardehkhani/ActTensor
 
 [Back to top](#Installation)
