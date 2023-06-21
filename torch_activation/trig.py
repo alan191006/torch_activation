@@ -57,10 +57,6 @@ class CosLU(nn.Module):
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
         - Output: :math:`(*)`, same shape as the input.
 
-    Attributes:
-        alpha: Scaling factor for the cosine term. Default is 1.0.
-        beta: Frequency factor for the cosine term. Default is 1.0.
-
     Examples::
 
         >>> m = CosLU(alpha=2.0, beta=1.0)

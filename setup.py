@@ -9,6 +9,6 @@ setup(
     url="https://github.com/alan191006/C-FCN-PyTorch-implementation",
     packages=find_packages(),
     install_requires=[
-        "torch <= 1.1.0",    
+        "torch >= 1.1.0",    
     ],
 )

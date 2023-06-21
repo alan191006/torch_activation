@@ -12,14 +12,13 @@ class LinComb(nn.Module):
     :math:`\text{LinComb}(x) = \sum_{i=1}^{n} w_i \cdot F_i(x)`
     
     Args:
-        activation: List of activation functions.
+        activations: List of activation functions.
         
     Shape:
         - Input: :math:`(*)` where :math:`*` means any number of additional dimensions.
         - Output: :math:`(*)`
 
     Attributes:
-        activations: List containing the activation functions.
         weights: Trainable weights for linear combination.
 
     Examples::
@@ -50,14 +49,13 @@ class NormLinComb(nn.Module):
     :math:`\text{NormLinComb}(x) = \frac{\sum_{i=1}^{n} w_i \cdot F_i(x)}{\|\|W\|\|}`
     
     Args:
-        activation: List of activation functions.
+        activations: List of activation functions.
         
     Shape:
         - Input: :math:`(*)` where :math:`*` means any number of additional dimensions.
         - Output: :math:`(*)`
 
     Attributes:
-        activations: List containing the activation functions.
         weights: Trainable weights for linear combination.
 
     Examples::

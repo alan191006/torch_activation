@@ -19,7 +19,8 @@ class DELU(nn.Module):
         - Output: :math:`(*)`, same shape as the input.
 
     Attributes:
-        n: Scaling factor for the positive part of the input. Default: 1.0.
+        n 
+        Scaling factor for the positive part of the input. Default: 1.0.
 
     Examples:
         >>> m = nn.DELU()

@@ -12,27 +12,23 @@ class ShiLU(nn.Module):
     :math:`\text{ShiLU}(x) = \alpha \cdot \text{ReLU}(x) + \beta`
 
     Args:
-        alpha : Scaling factor for the positive part of the input. Default: 1.0.
-        beta : Bias term added to the output. Default: 0.0.
+        alpha: Scaling factor for the positive part of the input. Default: 1.0.
+        beta: Bias term added to the output. Default: 0.0.
         inplace: can optionally do the operation in-place. Default: ``False``
 
     Shape:
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
         - Output: :math:`(*)`, same shape as the input.
-        
-    Attributes:
-        alpha : Scaling factor for the positive part of the input. Default: 1.0.
-        beta : Bias term added to the output. Default: 0.0.
 
     .. image:: ../images/activation_images/ShiLU.png
 
     Examples::
-    
-        >>> m = ShiLU(alpha=2.0, beta=1.0)
+
+        >>> m = torch_activation.ShiLU(alpha=2.0, beta=1.0)
         >>> x = torch.randn(2)
         >>> output = m(x)
 
-        >>> m = ShiLU(inplace=True)
+        >>> m = torch_activation.ShiLU(inplace=True)
         >>> x = torch.randn(2, 3, 4)
         >>> m(x)
     """
@@ -40,7 +36,7 @@ class ShiLU(nn.Module):
     def __init__(self, alpha=1.0, beta=0.0, inplace=False):
         super().__init__()
         self.alpha = nn.Parameter(torch.tensor(alpha))
-        self.beta  = nn.Parameter(torch.tensor(beta))
+        self.beta = nn.Parameter(torch.tensor(beta))
         self.inplace = inplace
 
     def forward(self, x) -> Tensor:
@@ -49,9 +45,9 @@ class ShiLU(nn.Module):
             x.mul_(self.alpha)
             x.add_(self.beta)
             return x
-        else:    
+        else:
             return self.alpha * F.relu(x) + self.beta
-        
+
 
 class CReLU(nn.Module):
     r"""
@@ -69,24 +65,23 @@ class CReLU(nn.Module):
 
     Examples::
 
-        >>> m = nn.CReLU()
+        >>> m = torch_activation.CReLU()
         >>> x = torch.randn(2, 3)
         >>> output = m(x)
-        
-        >>> m = CReLU(inplace=True)
+
+        >>> m = torch_activation.CReLU(inplace=True)
         >>> x = torch.randn(2, 3, 4)
         >>> m(x)
     """
-    
-    
+
     def __init__(self, dim=0):
         super(CReLU, self).__init__()
         self.dim = dim
 
     def forward(self, x) -> Tensor:
         return F.relu(torch.cat((x, -x), dim=self.dim))
-        
-        
+
+
 class ReLUN(nn.Module):
     r"""Applies the element-wise function:
 
@@ -99,21 +94,19 @@ class ReLUN(nn.Module):
     Shape:
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
         - Output: :math:`(*)`, same shape as the input.
-        
-    Attributes:
-        n: Upper bound for the function's output. Default is 1.0.
-        
+
     Examples::
 
-        >>> m = nn.ReLUN(n=6.0) # ReLU6
+        >>> m = torch_activation.ReLUN(n=6.0) # ReLU6
         >>> x = torch.randn(2)
         >>> output = m(x)
-        
-        >>> m = nn.ReLUN(inplace=True)
+
+        >>> m = torch_activation.ReLUN(inplace=True)
         >>> x = torch.randn(2)
         >>> m(x)
 
     """
+
     def __init__(self, n=1.0, inplace=False):
         super(ReLUN, self).__init__()
         self.n = nn.Parameter(torch.tensor(n))
@@ -126,8 +119,8 @@ class ReLUN(nn.Module):
             return x
         else:
             return torch.clamp(x, 0, self.n.data)
-        
-        
+
+
 class SquaredReLU(nn.Module):
     r"""
     Applies the element-wise function:
@@ -143,16 +136,15 @@ class SquaredReLU(nn.Module):
 
     Examples::
 
-        >>> m = nn.SquaredReLU()
+        >>> m = torch_activation.SquaredReLU()
         >>> x = torch.randn(2)
         >>> output = m(x)
 
-        >>> m = nn.SquaredReLU(inplace=True)
+        >>> m = torch_activation.SquaredReLU(inplace=True)
         >>> x = torch.randn(2)
         >>> m(x)
     """
-    
-    
+
     def __init__(self, inplace=False):
         super().__init__()
         self.inplace = inplace
@@ -162,7 +154,8 @@ class SquaredReLU(nn.Module):
             return F.relu_(x).pow_(2)
         else:
             return F.relu(x).pow(2)
-        
+
+
 class StarReLU(nn.Module):
     r"""
     Applies the element-wise function:
@@ -182,16 +175,15 @@ class StarReLU(nn.Module):
 
     Examples::
 
-        >>> m = nn.StarReLU(s=1.0, b=0.0)
+        >>> m = torch_activation.StarReLU(s=1.0, b=0.0)
         >>> x = torch.randn(3, 384, 384)
         >>> output = m(x)
 
-        >>> m = nn.StarReLU(learnable=True, inplace=True)
+        >>> m = torch_activation.StarReLU(learnable=True, inplace=True)
         >>> x = torch.randn(3, 384, 384)
         >>> m(x)
     """
-    
-    
+
     def __init__(self, s=0.8944, b=-0.4472, learnable=True, inplace=False):
         super().__init__()
         self.inplace = inplace
@@ -201,7 +193,6 @@ class StarReLU(nn.Module):
         else:
             self.s = torch.tensor(s)
             self.b = torch.tensor(b)
-        
 
     def forward(self, x) -> Tensor:
         if self.inplace:
@@ -210,7 +201,7 @@ class StarReLU(nn.Module):
                              .add_(self.b)
         else:
             return self.s * F.relu(x).pow(2) + self.b
-    
-    
+
+
 if __name__ == '__main__':
     pass

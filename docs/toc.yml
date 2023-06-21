@@ -1,0 +1,32 @@
+- title: Torch Activation
+  sections:
+    - title: ReLU Variations
+      pages:
+        - torch_activation.relu_family.ShiLU
+        - torch_activation.relu_family.CReLU
+        - torch_activation.relu_family.ReLUN
+        - torch_activation.relu_family.SquaredReLU
+        - torch_activation.relu_family.StarReLU
+    - title: Trigonometry-based Functions
+      pages:
+        - torch_activation.trig.CosLU
+        - torch_activation.trig.GCU
+        - torch_activation.trig.SinLU
+    - title: GLU variations
+      pages:
+        - torch_activation.glu_family.ReGLU
+        - torch_activation.glu_family.GeGLU
+        - torch_activation.glu_family.SeGLU
+        - torch_activation.glu_family.SwiGLU
+    - title: Composite functions
+      pages:
+        - torch_activation.composite.DELU
+        - torch_activation.composite.DReLUs
+    - title: Other Non-linear functions
+      pages:
+        - torch_activation.non_linear.CoLU
+        - torch_activation.non_linear.ScaledSoftSign
+    - title: Linear Combination
+      pages:
+        - torch_activation.lincomb.LinComb
+        - torch_activation.lincomb.NormLinComb

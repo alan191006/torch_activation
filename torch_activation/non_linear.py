@@ -55,10 +55,6 @@ class ScaledSoftSign(torch.nn.Module):
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
         - Output: :math:`(*)`, same shape as the input.
 
-    Attributes:
-        alpha (nn.Parameter): The alpha scaling parameter.
-        beta (nn.Parameter): The beta scaling parameter.
-
     Examples:
         >>> m = ScaledSoftSign(alpha=0.5, beta=1.0)
         >>> x = torch.randn(2, 3)
