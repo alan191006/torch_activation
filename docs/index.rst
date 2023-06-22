@@ -8,8 +8,8 @@ Table of Contents
 -----------------
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    installation
-   torch_activation
+   modules
    examples
