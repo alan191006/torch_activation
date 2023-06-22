@@ -1,9 +1,9 @@
 .. Torch activation documentation master file, created by
-   sphinx-quickstart on Wed Jun 21 12:05:40 2023.
+   sphinx-quickstart on Thu Jun 22 12:01:42 2023.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Torch activation's documentation!
+Welcome to Torch activation's documentation!
 ============================================
 
 .. toctree::
@@ -11,5 +11,3 @@ Torch activation's documentation!
    :caption: Contents:
 
    modules
-
-

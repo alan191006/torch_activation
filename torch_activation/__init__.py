@@ -2,8 +2,8 @@ from .composite import DELU, DReLUs
 from .trig import CosLU, GCU, SinLU
 from .lincomb import LinComb, NormLinComb
 from .non_linear import CoLU, ScaledSoftSign
-from .glu_family import ReGLU, GeGLU, SeGLU, SwiGLU
-from .relu_family import ShiLU, CReLU, ReLUN, SquaredReLU, StarReLU
+from .glus import ReGLU, GeGLU, SeGLU, SwiGLU
+from .relus import ShiLU, CReLU, ReLUN, SquaredReLU, StarReLU
 
 
 __all__ = ["ShiLU", "DELU", "CReLU", "GCU",

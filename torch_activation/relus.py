@@ -12,9 +12,9 @@ class ShiLU(nn.Module):
     :math:`\text{ShiLU}(x) = \alpha \cdot \text{ReLU}(x) + \beta`
 
     Args:
-        alpha: Scaling factor for the positive part of the input. Default: 1.0.
-        beta: Bias term added to the output. Default: 0.0.
-        inplace: can optionally do the operation in-place. Default: ``False``
+        alpha (float, optional): Scaling factor for the positive part of the input. Default: 1.0.
+        beta (float, optional): Bias term added to the output. Default: 0.0.
+        inplace (bool, optional): can optionally do the operation in-place. Default: ``False``
 
     Shape:
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
@@ -33,7 +33,8 @@ class ShiLU(nn.Module):
         >>> m(x)
     """
 
-    def __init__(self, alpha=1.0, beta=0.0, inplace=False):
+    def __init__(self, alpha: float = 1.0, beta: float = 0.0, 
+                 inplace: bool = False):
         super().__init__()
         self.alpha = nn.Parameter(torch.tensor(alpha))
         self.beta = nn.Parameter(torch.tensor(beta))
@@ -56,8 +57,8 @@ class CReLU(nn.Module):
     :math:`\text{CReLU}(x) = \text{ReLU}(x) \oplus \text{ReLU}(-x)`
 
     Args:
-        dim: Dimension along which to concatenate in the output tensor. Default: 1
-        inplace: can optionally do the operation in-place. Default: ``False``
+        dim (int, optional): Dimension along which to concatenate in the output tensor. Default: 1
+        inplace (bool, optional): can optionally do the operation in-place. Default: ``False``
 
     Shape:
         - Input: :math:`(*, C, *)` where :math:`*` means any number of additional dimensions
@@ -74,7 +75,7 @@ class CReLU(nn.Module):
         >>> m(x)
     """
 
-    def __init__(self, dim=0):
+    def __init__(self, dim: int = 0):
         super(CReLU, self).__init__()
         self.dim = dim
 
@@ -88,8 +89,8 @@ class ReLUN(nn.Module):
     :math:`\text{ReLUN}(x) = \min(\text{ReLU}(x), n)`
 
     Args:
-        n: Upper bound for the function's output. Default is 1.0.
-        inplace: can optionally do the operation in-place. Default: ``False``
+        n (float, optional): Upper bound for the function's output. Default is 1.0.
+        inplace (bool, optional): can optionally do the operation in-place. Default: ``False``
 
     Shape:
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
@@ -107,7 +108,7 @@ class ReLUN(nn.Module):
 
     """
 
-    def __init__(self, n=1.0, inplace=False):
+    def __init__(self, n: float = 1.0, inplace: bool = False):
         super(ReLUN, self).__init__()
         self.n = nn.Parameter(torch.tensor(n))
         self.inplace = inplace
@@ -128,7 +129,7 @@ class SquaredReLU(nn.Module):
     :math:`\text{SquaredReLU}(x) = \text{ReLU}(x)^2`
 
     Args:
-        inplace: can optionally do the operation in-place. Default: ``False``
+        inplace (bool, optional): can optionally do the operation in-place. Default: ``False``
 
     Shape:
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
@@ -145,7 +146,7 @@ class SquaredReLU(nn.Module):
         >>> m(x)
     """
 
-    def __init__(self, inplace=False):
+    def __init__(self, inplace: bool = False):
         super().__init__()
         self.inplace = inplace
 
@@ -163,9 +164,10 @@ class StarReLU(nn.Module):
     :math:`\text{StarReLU}(x) = s \cdot \text{ReLU}(x)^2 + b`
 
     Args:
-        inplace: can optionally do the operation in-place. Default: ``False``
-        s: Scaled factor for StarReLU, shared across channel. Default: 0.8944
-        b: Bias term for StarReLU, shared across channel. Default: -0.4472
+        s (float, optional): Scaled factor for StarReLU, shared across channel. Default: 0.8944
+        b (float, optional): Bias term for StarReLU, shared across channel. Default: -0.4472
+        learnable (bool, optional): optionally make ``s`` and ``b`` trainable. Default: ``True``
+        inplace (bool, optional): can optionally do the operation in-place. Default: ``False``
 
     Shape:
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
@@ -184,7 +186,8 @@ class StarReLU(nn.Module):
         >>> m(x)
     """
 
-    def __init__(self, s=0.8944, b=-0.4472, learnable=True, inplace=False):
+    def __init__(self, s: float = 0.8944, b: float = -0.4472, 
+                 learnable: bool = True, inplace: bool = False):
         super().__init__()
         self.inplace = inplace
         if learnable:

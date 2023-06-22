@@ -1,7 +1,57 @@
-Available functions
----------------
+ReLU Variations
+------------------------------
+
+.. automodule:: torch_activation.relus
+   :members:
+   :undoc-members:
+
+GLU Variations
+-----------------------------
+
+.. automodule:: torch_activation.glus
+   :members:
+   :undoc-members:
+
+Composite functions
+----------------------------------
+
+.. automodule:: torch_activation.composite
+   :members:
+   :undoc-members:
+
+Trigonometry-based Functions
+-----------------------------
+
+.. automodule:: torch_activation.trig
+   :members:
+   :undoc-members: 
+
+Other Non-linear Functions
+------------------------------------
+
+.. automodule:: torch_activation.non_linear
+   :members:
+   :undoc-members:
+
+Linear Combination
+--------------------------------
+
+.. automodule:: torch_activation.lincomb
+   :members:
+   :undoc-members:
+
+Other utilities
+------------------------------
+
+.. automodule:: torch_activation.utils
+   :members:
+   :undoc-members:
+   :exclude-members: test_inplace
+
+All Available Functions
+------------------------------
 
 .. automodule:: torch_activation
    :members:
    :undoc-members:
-   :show-inheritance:
+   
