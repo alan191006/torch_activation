@@ -11,16 +11,12 @@ class DELU(nn.Module):
     :math:`\text{DELU}(x) = \begin{cases} \text{SiLU}(x), x \leqslant 0 \\x(n-1), \text{otherwise} \end{cases}`
 
     Args:
-        n: Scaling factor for the positive part of the input. Default: 1.0.
-        inplace: can optionally do the operation in-place. Default: ``False``
+        n (float, optional): Scaling factor for the positive part of the input. Default: 1.0.
+        inplace (bool, optional): can optionally do the operation in-place. Default: ``False``
 
     Shape:
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
         - Output: :math:`(*)`, same shape as the input.
-
-    Attributes:
-        n 
-        Scaling factor for the positive part of the input. Default: 1.0.
 
     Examples:
         >>> m = nn.DELU()
@@ -32,7 +28,7 @@ class DELU(nn.Module):
         >>> m(x)
     """
 
-    def __init__(self, n=1.0, inplace=False):
+    def __init__(self, n: float = 1.0, inplace: bool = False):
         super(DELU, self).__init__()
         self.n = torch.nn.Parameter(torch.tensor(n))
         self.inplace = inplace
@@ -56,11 +52,11 @@ class DReLUs(nn.Module):
     r"""
     Applies the DReLUs activation function:
 
-    :math:`\text{DELU}(x) = \begin{cases} \alpha (e ^ x - 1), x \leqslant 0 \\x, \text{otherwise} \end{cases}`
+    :math:`\text{DReLUs}(x) = \begin{cases} \alpha (e ^ x - 1), x \leqslant 0 \\x, \text{otherwise} \end{cases}`
 
     Args:
-        n: Scaling factor for the positive part of the input. Default: 1.0.
-        inplace: can optionally do the operation in-place. Default: ``False``
+        alpha (float, optional): Scaling factor for the positive part of the input. Default: 1.0.
+        inplace (bool, optional): can optionally do the operation in-place. Default: ``False``
 
     Shape:
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
@@ -75,8 +71,9 @@ class DReLUs(nn.Module):
         >>> output = m(x)
     """
     
-    def __init__(self, alpha):
+    def __init__(self, alpha: float = 1.0, inplace: bool = False):
         self.alpha = alpha
+        self.inplace = inplace
         
     def forward(self, x) -> Tensor:
         return self._forward_inplace(x) if self.inplace else self._forward(x)

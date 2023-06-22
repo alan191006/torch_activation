@@ -1,6 +1,6 @@
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../..'))
+sys.path.insert(0, os.path.abspath('..'))
 
 # Configuration file for the Sphinx documentation builder.
 #
@@ -20,21 +20,13 @@ release = '0.1.1'
 
 extensions = [
     'sphinx.ext.autodoc',
-    'sphinx.ext.autosummary',
-    'sphinx.ext.doctest',
-    'sphinx.ext.intersphinx',
-    'sphinx.ext.todo',
-    'sphinx.ext.coverage',
-    'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
-    'sphinx.ext.autosectionlabel',
+    'sphinx.ext.napoleon'
 ]
 
-# autodoc_default_flags = ['members']
-# autoclass_content = "both"
-
 templates_path = ['_templates']
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', "../torch_activation/*"]
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+
 
 
 # -- Options for HTML output -------------------------------------------------

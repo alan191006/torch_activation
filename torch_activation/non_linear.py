@@ -12,7 +12,7 @@ class CoLU(nn.Module):
     :math:`\text{CoLU}(x) = \frac{x}{1-x \cdot e^{-(x + e^x)}}`
 
     Args:
-        inplace: can optionally do the operation in-place. Default: ``False``
+        inplace (bool, optional): can optionally do the operation in-place. Default: ``False``
 
     Shape:
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
@@ -47,9 +47,8 @@ class ScaledSoftSign(torch.nn.Module):
     :math:`\text{ScaledSoftSign}(x) = \frac{\alpha \cdot x}{\beta + \|x\|}`
 
     Args:
-        alpha: The initial value of the alpha parameter.
-        beta: The initial value of the beta parameter.
-        inplace: can optionally do the operation in-place. Default: ``False``
+        alpha (float, optional): The initial value of the alpha parameter.
+        beta (float, optional): The initial value of the beta parameter.
 
     Shape:
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
@@ -65,7 +64,8 @@ class ScaledSoftSign(torch.nn.Module):
         >>> m(x)
     """
 
-    def __init__(self, alpha=1.0, beta=1.0):
+    def __init__(self, alpha: float = 1.0, beta: float = 1.0):
+        
         super(ScaledSoftSign, self).__init__()
 
         self.alpha = torch.nn.Parameter(torch.tensor(alpha))

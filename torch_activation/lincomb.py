@@ -3,6 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 from torch import Tensor
+from typing import Iterable
 
 
 class LinComb(nn.Module):
@@ -29,7 +30,7 @@ class LinComb(nn.Module):
         >>> output = m(input)
     """
     
-    def __init__(self, activations: list):
+    def __init__(self, activations: Iterable[str]):
         super(LinComb, self).__init__()
         self.activation_functions = nn.ModuleList(activations)
         self.weights = nn.Parameter(torch.Tensor(len(activations)))
@@ -49,7 +50,7 @@ class NormLinComb(nn.Module):
     :math:`\text{NormLinComb}(x) = \frac{\sum_{i=1}^{n} w_i \cdot F_i(x)}{\|\|W\|\|}`
     
     Args:
-        activations: List of activation functions.
+        activations (): List of activation functions.
         
     Shape:
         - Input: :math:`(*)` where :math:`*` means any number of additional dimensions.
@@ -66,7 +67,7 @@ class NormLinComb(nn.Module):
         >>> output = m(input)
     """
     
-    def __init__(self, activations: list):
+    def __init__(self, activations: Iterable[str]):
         super(LinComb, self).__init__()
         self.activation_functions = nn.ModuleList(activations)
         self.weights = nn.Parameter(torch.Tensor(len(activations)))

@@ -14,7 +14,7 @@ class GCU(nn.Module):
     :math:`\text{GCU}(x) = x \cos (x)`
 
     Args:
-        inplace: can optionally do the operation in-place. Default: ``False``
+        inplace (bool, optional): can optionally do the operation in-place. Default: ``False``
 
     Shape:
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
@@ -31,7 +31,7 @@ class GCU(nn.Module):
         >>> m(x)
     """
 
-    def __init__(self, inplace=False):
+    def __init__(self, inplace: bool = False):
         super(GCU, self).__init__()
         self.inplace = inplace
 
@@ -49,9 +49,9 @@ class CosLU(nn.Module):
     :math:`\text{CosLU}(x) = (x + \alpha \cdot \cos(\beta x)) \cdot \sigma(x)`
 
     Args:
-        alpha: Scaling factor for the cosine term. Default is 1.0.
-        beta: Frequency factor for the cosine term. Default is 1.0.
-        inplace: can optionally do the operation in-place. Default: ``False``
+        alpha (float, optional): Scaling factor for the cosine term. Default is 1.0.
+        beta (float, optional): Frequency factor for the cosine term. Default is 1.0.
+        inplace (bool, optional): can optionally do the operation in-place. Default: ``False``
 
     Shape:
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
@@ -68,7 +68,8 @@ class CosLU(nn.Module):
         >>> m(x) 
     """
 
-    def __init__(self, alpha=1.0, beta=1.0, inplace=False):
+    def __init__(self, alpha: float = 1.0, beta: float = 1.0, 
+                 inplace: bool = False):
         super(CosLU, self).__init__()
         self.alpha = nn.Parameter(torch.tensor(alpha))
         self.beta = nn.Parameter(torch.tensor(beta))
@@ -97,8 +98,8 @@ class SinLU(nn.Module):
     :math:`\text{SinLU}(x) = (x + \alpha \sin (\beta x)) \sigma (x)`
 
     Args:
-        a: Initial value for sine function magnitude. Default: 1.0.
-        b: Initial value for sine function period. Default: 1.0.
+        a (float, optional): Initial value for sine function magnitude. Default: 1.0.
+        b (float, optional): Initial value for sine function period. Default: 1.0.
 
     Shape:
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
@@ -110,7 +111,7 @@ class SinLU(nn.Module):
         >>> x = torch.randn(2)
         >>> output = m(x)
     """
-    def __init__(self, a=1.0, b=1.0):
+    def __init__(self, a: float = 1.0, b: float = 1.0):
         super(SinLU, self).__init__()
         self.a = nn.Parameter(torch.Tensor([a]))
         self.b = nn.Parameter(torch.Tensor([b]))
