@@ -1,7 +1,8 @@
 Torch Activation
 ================
 
-.. toctree::
-   :maxdepth: 2
+.. automodule:: torch_activation.relus
+   :members:
+   :undoc-members:
 
-   modules
+   
