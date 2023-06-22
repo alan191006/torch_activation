@@ -23,6 +23,27 @@ x = torch.rand(16, 3, 384, 384)
 m(x)
 ```
 
+Or in `nn.Sequential`:
+
+```python
+import torch
+import torch.nn as nn
+import torch_activation as tac
+
+class Net(nn.Module):
+    def __init__(self):
+        super(Net, self).__init__()
+        self.net = nn.Sequential(
+            nn.Conv2d(64, 32, 2),
+            tac.DELU(),
+            nn.ConvTranspose2d(32, 64, 2),
+            tac.ReLU(inplace=True),
+        )
+
+    def forward(self, x):
+        return self.net(x)
+```
+
 Activation functions can be imported directly from the package, such as `torch_activation.CoLU`, or from submodules, such as `torch_activation.non_linear.CoLU`.
 
 For a comprehensive list of available functions, please refer to the [LIST_OF_FUNCTION](LIST_OF_FUNCTION.md) file.

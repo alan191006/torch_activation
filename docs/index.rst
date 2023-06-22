@@ -1,13 +1,15 @@
-.. Torch activation documentation master file, created by
-   sphinx-quickstart on Thu Jun 22 12:01:42 2023.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+================
+Torch Activation
+================
 
-Welcome to Torch activation's documentation!
-============================================
+Torch-activation, a collection of activation functions for PyTorch library
+
+Table of Contents
+-----------------
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :maxdepth: 1
 
-   modules
+   installation
+   torch_activation
+   examples

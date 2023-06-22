@@ -28,12 +28,12 @@ def plot_activation(activation, params, param_names, save_dir="./images/activati
 
     If `preview` is set to True, the plot will also be displayed interactively.
 
-    Example:
-        # Plotting the sigmoid activation function and its derivative
-        params = [(0.5,), (1.0,), (2.0,)]
-        param_names = ['alpha']
-        plot_activation(torch.sigmoid, params, param_names, save_dir="./images/activation_images",
-                        x_range=(-10, 10), y_range=(-0.5, 1.5), preview=True, plot_derivative=True)
+    Example::
+    
+        >>> # Plotting the sigmoid activation function and its derivative
+        >>> params = [(1.0,), (3.0,), (6.0,)]
+        >>> param_names = ['n']
+        >>> plot_activation(torch_activation.ReLUN, params, param_names)
     """
     
     x = torch.linspace(x_range[0], x_range[1], 1000)
