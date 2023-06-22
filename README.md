@@ -27,7 +27,7 @@ Activation functions can be imported directly from the package, such as `torch_a
 
 For a comprehensive list of available functions, please refer to the [LIST_OF_FUNCTION](LIST_OF_FUNCTION.md) file.
 
-To learn more about usage, please refer to [Documentation]()
+To learn more about usage, please refer to [Documentation](https://torch-activation.readthedocs.io)
 
 We hope you find PyTorch Activations useful for your experimentation and model development. Enjoy exploring different activation functions!
 
@@ -37,7 +37,7 @@ Alan Huynh - [LinkedIn](https://www.linkedin.com/in/alan-huynh-64b357194/) - [hd
 
 Project Link: [https://github.com/alan191006/torch_activation](https://github.com/alan191006/torch_activation)
 
-Documentation Link: [Documentation]()
+Documentation Link: [https://torch-activation.readthedocs.io](https://torch-activation.readthedocs.io)
 
 PyPI Link: [https://pypi.org/project/torch-activation/](https://pypi.org/project/torch-activation/)
 
