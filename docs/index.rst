@@ -13,3 +13,4 @@ Table of Contents
    installation
    modules
    examples
+   torch_activation

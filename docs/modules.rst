@@ -1,4 +1,4 @@
-Torch Activation
+Modules
 =================
 
 ReLU Variations
