@@ -1,6 +1,6 @@
 # PyTorch Activations
 
-PyTorch Activations is a comprehensive collection of activation functions for the PyTorch library. This project aims to provide an easy-to-use solution for experimenting with different activation functions or simply adding variety to your models.
+PyTorch Activations is a collection of activation functions for the PyTorch library. This project aims to provide an easy-to-use solution for experimenting with different activation functions or simply adding variety to your models.
 
 
 ## Installation
@@ -23,9 +23,11 @@ x = torch.rand(16, 3, 384, 384)
 m(x)
 ```
 
-Activation functions can be imported directly from the package, such as torch_activation.CoLU, or from submodules, such as torch_activation.non_linear.CoLU.
+Activation functions can be imported directly from the package, such as `torch_activation.CoLU`, or from submodules, such as `torch_activation.non_linear.CoLU`.
 
 For a comprehensive list of available functions, please refer to the [LIST_OF_FUNCTION](LIST_OF_FUNCTION.md) file.
+
+To learn more about usage, please refer to [Documentation]()
 
 We hope you find PyTorch Activations useful for your experimentation and model development. Enjoy exploring different activation functions!
 
@@ -34,6 +36,8 @@ We hope you find PyTorch Activations useful for your experimentation and model d
 Alan Huynh - [LinkedIn](https://www.linkedin.com/in/alan-huynh-64b357194/) - [hdmquan@outlook.com](mailto:hdmquan@outlook.com)
 
 Project Link: [https://github.com/alan191006/torch_activation](https://github.com/alan191006/torch_activation)
+
+Documentation Link: [Documentation]()
 
 PyPI Link: [https://pypi.org/project/torch-activation/](https://pypi.org/project/torch-activation/)
 
