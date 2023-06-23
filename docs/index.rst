@@ -11,6 +11,5 @@ Table of Contents
    :maxdepth: 2
 
    installation
-   modules
    examples
-   torch_activation
+   modules
