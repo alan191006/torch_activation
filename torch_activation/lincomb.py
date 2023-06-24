@@ -12,15 +12,15 @@ class LinComb(nn.Module):
     
     :math:`\text{LinComb}(x) = \sum_{i=1}^{n} w_i \cdot F_i(x)`
     
+    LinComb is an analog of linear combination of a set of activation functions.
+    Thus, is more flexible and adaptable to the data in exchange for speed.
+    
     Args:
         activations: List of activation functions.
         
     Shape:
         - Input: :math:`(*)` where :math:`*` means any number of additional dimensions.
         - Output: :math:`(*)`
-
-    Attributes:
-        weights: Trainable weights for linear combination.
 
     Examples::
 
@@ -49,15 +49,14 @@ class NormLinComb(nn.Module):
     
     :math:`\text{NormLinComb}(x) = \frac{\sum_{i=1}^{n} w_i \cdot F_i(x)}{\|\|W\|\|}`
     
+    A version of `LinComb` with normalized linear combination using weight's norm.
+    
     Args:
         activations (): List of activation functions.
         
     Shape:
         - Input: :math:`(*)` where :math:`*` means any number of additional dimensions.
         - Output: :math:`(*)`
-
-    Attributes:
-        weights: Trainable weights for linear combination.
 
     Examples::
 

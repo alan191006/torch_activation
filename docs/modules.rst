@@ -15,10 +15,10 @@ GLU Variations
    :members:
    :undoc-members:
 
-Composite functions
+Piece-wise functions
 ----------------------------------
 
-.. automodule:: torch_activation.composite
+.. automodule:: torch_activation.piece_wise
    :members:
    :undoc-members:
 
@@ -29,10 +29,10 @@ Trigonometry-based Functions
    :members:
    :undoc-members: 
 
-Other Functions
+Curve Functions
 ------------------------------------
 
-.. automodule:: torch_activation.non_linear
+.. automodule:: torch_activation.curves
    :members:
    :undoc-members:
 

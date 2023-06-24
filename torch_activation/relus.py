@@ -10,6 +10,8 @@ class ShiLU(nn.Module):
     Applies the ShiLU activation function:
 
     :math:`\text{ShiLU}(x) = \alpha \cdot \text{ReLU}(x) + \beta`
+    
+    
 
     Args:
         alpha (float, optional): Scaling factor for the positive part of the input. Default: 1.0.

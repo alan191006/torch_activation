@@ -10,6 +10,9 @@ class DELU(nn.Module):
 
     :math:`\text{DELU}(x) = \begin{cases} \text{SiLU}(x), x \leqslant 0 \\x(n-1), \text{otherwise} \end{cases}`
 
+    The DELU activation function is defined by combining the SiLU activation function and a modified ReLU-like function. 
+    It provides a smooth output near zero and a buffer region to the left of zero, with the "n" parameter controlling the slope of the linear part of the function.
+    
     Args:
         n (float, optional): Scaling factor for the positive part of the input. Default: 1.0.
         inplace (bool, optional): can optionally do the operation in-place. Default: ``False``
@@ -47,9 +50,9 @@ class DELU(nn.Module):
             torch.abs(torch.exp(-x[x > 0]) - 1)
         return x
     
-
+"""
 class DReLUs(nn.Module):
-    r"""
+    
     Applies the DReLUs activation function:
 
     :math:`\text{DReLUs}(x) = \begin{cases} \alpha (e ^ x - 1), x \leqslant 0 \\x, \text{otherwise} \end{cases}`
@@ -66,7 +69,7 @@ class DReLUs(nn.Module):
         >>> m = nn.DReLUs()
         >>> x = torch.randn(2)
         >>> output = m(x)
-    """
+    
     
     def __init__(self, alpha: float = 1.0, inplace: bool = False):
         self.alpha = alpha
@@ -82,4 +85,4 @@ class DReLUs(nn.Module):
     def _forward_inplace(self, x):
         x[x <= 0] = (torch.exp(x[x <= 0]) - 1) * self.alpha
         return x
-        
+ """       

@@ -77,6 +77,30 @@ class ScaledSoftSign(torch.nn.Module):
         denom = self.beta + abs_x
         result = alpha_x / denom
         return result
+    
+
+class Phish(torch.nn.Module):
+    r"""
+    Applies the Phish activation function:
+
+    :math:`\text{Phish}(x) = x \odot \tanh (\text{GELU} (x))`
+
+    Shape:
+        - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
+        - Output: :math:`(*)`, same shape as the input.
+
+    Examples:
+        >>> m = Phish()
+        >>> x = torch.randn(2, 3)
+        >>> output = m(x)
+    """
+
+    def __init__(self):
+        super(Phish, self).__init__()
+
+    def forward(self, x) -> Tensor:
+        x *= nn.Tanh(F.gelu(x))
+        return x
 
 
 if __name__ == "__main__":
