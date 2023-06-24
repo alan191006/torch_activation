@@ -15,12 +15,13 @@ GLU Variations
    :members:
    :undoc-members:
 
-Piece-wise functions
-----------------------------------
+..
+   Piece-wise functions
+   ----------------------------------
 
-.. automodule:: torch_activation.piece_wise
-   :members:
-   :undoc-members:
+   .. automodule:: torch_activation.piece_wise
+      :members:
+      :undoc-members:
 
 Trigonometry-based Functions
 -----------------------------
