@@ -1,0 +1,10 @@
+torch
+psutil
+plotly
+Babel
+imagesize
+jinja2
+readme-renderer
+Sphinx
+sphinx-rtd-theme
+sphinxcontrib-napoleon

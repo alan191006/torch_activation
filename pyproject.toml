@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "torch-activation"
+version = "0.1.3"
+description = "A library of new activation function implement in PyTorch to save time in experiment and have fun"
+authors = ["Alan Huynh <hdmquan@outlook.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "torch_activation"}]
+
+[tool.poetry.dependencies]
+python = ">=3.6"
+torch = ">=1.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
