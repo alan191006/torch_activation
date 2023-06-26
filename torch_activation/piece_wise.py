@@ -10,9 +10,9 @@ class DELU(nn.Module):
 
     :math:`\text{DELU}(x) = \begin{cases} \text{SiLU}(x), x \leqslant 0 \\x(n-1), \text{otherwise} \end{cases}`
 
-    The DELU activation function is defined by combining the SiLU activation function and a modified ReLU-like function. 
-    It provides a smooth output near zero and a buffer region to the left of zero, with the "n" parameter controlling the slope of the linear part of the function.
-    
+        
+     See: https://doi.org/10.20944/preprints202301.0463.v1
+   
     Args:
         n (float, optional): Scaling factor for the positive part of the input. Default: 1.0.
         inplace (bool, optional): can optionally do the operation in-place. Default: ``False``
@@ -33,7 +33,7 @@ class DELU(nn.Module):
 
     def __init__(self, n: float = 1.0, inplace: bool = False):
         super(DELU, self).__init__()
-        self.n = torch.nn.Parameter(torch.tensor(n))
+        self.n = torch.nn.Parameter(Tensor(n))
         self.inplace = inplace
 
     def forward(self, x) -> Tensor:

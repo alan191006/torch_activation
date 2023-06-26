@@ -5,15 +5,14 @@ import plotly
 import plotly.graph_objects as go
 
 
-def plot_activation(activation, params, param_names, save_dir="./images/activation_images",
+def plot_activation(activation: torch.nn.Module, params: dict, save_dir="./images/activation_images",
                     x_range=(-5, 5), y_range=None, preview=False, plot_derivative=True):
-    r"""
+    """
     Plot the activation function and optionally its derivative.
 
     Parameters:
-        activation (callable): The activation function to plot.
-        params (list): A list of parameter tuples for the activation function.
-        param_names (list): A list of parameter names corresponding to each tuple in `params`.
+        activation (torch.nn.Module): The activation function to plot.
+        params (dict): A dictionary of parameter names and values for the activation function.
         save_dir (str, optional): The directory to save the generated image. Defaults to "./images/activation_images".
         x_range (tuple, optional): The x-axis range for the plot. Defaults to (-5, 5).
         y_range (tuple, optional): The y-axis range for the plot. Defaults to None (auto-scale).
@@ -29,13 +28,12 @@ def plot_activation(activation, params, param_names, save_dir="./images/activati
     If `preview` is set to True, the plot will also be displayed interactively.
 
     Example::
-    
+
         >>> # Plotting the sigmoid activation function and its derivative
-        >>> params = [(1.0,), (3.0,), (6.0,)]
-        >>> param_names = ['n']
-        >>> plot_activation(torch_activation.ReLUN, params, param_names)
+        >>> params = {'n': 1.0}
+        >>> plot_activation(torch.nn.Sigmoid(), params)
+
     """
-    
     x = torch.linspace(x_range[0], x_range[1], 1000)
 
     fig = go.Figure()
@@ -43,15 +41,11 @@ def plot_activation(activation, params, param_names, save_dir="./images/activati
     # Color for each param
     colors = plotly.colors.qualitative.D3[:len(params)]
 
-    for input_values, color in zip(params, colors):
-        m = activation(*input_values)
+    for param_name, param_value, color in zip(params.keys(), params.values(), colors):
+        m = activation(**{param_name: param_value})
         y = m(x)
 
-        label = "Params:"
-        for name, value in zip(param_names, input_values):
-            label += f" {name} {value},"
-
-        label = label.rstrip(",")
+        label = f"{param_name}: {param_value}"
 
         # Determine the y-axis range
         if y_range is None:
@@ -78,59 +72,5 @@ def plot_activation(activation, params, param_names, save_dir="./images/activati
     print(f"Image saved as {file_name}")
 
 
-def test_inplace(activation):
-    r"""
-    Check and output activation function's output memory usage with inplace=False and inplace=True (if implemented)
-    """
-
-    print('_' * 20)
-    print()
-    print(f"Testing {activation.__name__}...\n")
-
-    x = torch.rand(5)
-
-    m = activation()
-    y = m(x)
-
-    print(f"Output:          {y.tolist()}")
-
-    if not hasattr(activation(), 'inplace'):
-        print(f"{activation.__name__} does not have in-place option")
-        return
-
-    m_ = activation(inplace=True)
-    m_(x)
-
-    print(f"In-place output: {x.tolist()}\n")
-
-    if torch.allclose(x, y):
-        print("\033[92mOutput test: passed\033[0m")
-    else:
-        print("\033[91mOutput test: failed\033[0m")
-
-    print()
-
-    process = psutil.Process()
-
-    x = torch.randn(10000, 10000)
-
-    mem_before = process.memory_info().rss
-    _ = m(x)
-    mem_after = process.memory_info().rss
-
-    print("No in-place")
-    print(f"Memory before: {mem_before}, memory after: {mem_after}")
-    print(f"\033[1mMemory diffrence: {mem_after-mem_before}\033[0m")
-    print()
-
-    x = torch.randn(10000, 10000)
-
-    mem_before = process.memory_info().rss
-    m_(x)
-    mem_after = process.memory_info().rss
-
-    print("In-place")
-    print(f"Memory before: {mem_before}, memory after: {mem_after}")
-    print(f"\033[1mMemory diffrence: {mem_after-mem_before}\033[0m")
-
-    print()
+if __name__ == "__main__":
+    pass

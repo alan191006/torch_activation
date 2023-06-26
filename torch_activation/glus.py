@@ -11,8 +11,8 @@ class ReGLU(nn.Module):
 
     :math:`\text{GeGLU}(x) = \text{ReLU} (xW + b) \odot (xV + c)`
 
-    A GLU variation with the function applied to the first half of input is ReLU instead of sigmoid.
-    
+     See: https://doi.org/10.48550/arXiv.2002.05202
+
     Args:
         dim (int, optional): the dimension on which to split the input. Default: -1 
 
@@ -43,9 +43,9 @@ class GeGLU(nn.Module):
     Applies the GeGLU activation function, defined as:
 
     :math:`\text{GeGLU}(x) = \text{GELU} (xW + b) \odot (xV + c)`
-
-    A GLU variation with the function applied to the first half of input is GELU instead of sigmoid.
-
+    
+     See: https://doi.org/10.48550/arXiv.2002.05202
+    
     Args:
         dim (int, optional): the dimension on which to split the input. Default: -1 
 
@@ -76,8 +76,8 @@ class SwiGLU(nn.Module):
 
     :math:`\sigma(x) =  \text{Swish} (xW + b) \odot (xV + c)`
 
-    A GLU variation with the function applied to the first half of input is Swish (SiLU) instead of sigmoid.
-    
+     See: https://doi.org/10.48550/arXiv.2002.05202
+
     Args:
         dim (int, optional): the dimension on which to split the input. Default: -1 
 
@@ -106,8 +106,6 @@ class SeGLU(nn.Module):
     Applies the SeGLU activation function, defined as:
 
     :math:`\text{SeGLU}(x) =  \text{SELU} (xW + b) \odot (xV + c)`
-
-    A GLU variation with the function applied to the first half of input is SELU instead of sigmoid.
 
     Args:
         dim (int, optional): the dimension on which to split the input. Default: -1 

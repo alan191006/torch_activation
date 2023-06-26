@@ -4,13 +4,14 @@ from .lincomb import LinComb, NormLinComb
 from .curves import CoLU, ScaledSoftSign, Phish
 from .glus import ReGLU, GeGLU, SeGLU, SwiGLU
 from .relus import ShiLU, CReLU, ReLUN, SquaredReLU, StarReLU
+from .utils import plot_activation
 
 
 __all__ = ["ShiLU", "DELU", "CReLU", "GCU",
            "CosLU", "CoLU", "ReLUN",
            "SquaredReLU", "ScaledSoftSign",
-           "ReGLU", "GeGLU", "SeGLU", "SwiGLU"
-           "LinComb", "NormLinComb", "SinLU"
-           "DReLUs", "StarReLU"]
+           "ReGLU", "GeGLU", "SeGLU", "SwiGLU",
+           "LinComb", "NormLinComb", "SinLU",
+           "DReLUs", "StarReLU", "plot_activation",]
 
-__version__ = "0.1.3"
+__version__ = "0.2.0"

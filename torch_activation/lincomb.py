@@ -12,11 +12,10 @@ class LinComb(nn.Module):
     
     :math:`\text{LinComb}(x) = \sum_{i=1}^{n} w_i \cdot F_i(x)`
     
-    LinComb is an analog of linear combination of a set of activation functions.
-    Thus, is more flexible and adaptable to the data in exchange for speed.
-    
+     See: https://doi.org/10.20944/preprints202301.0463.v1
+     
     Args:
-        activations: List of activation functions.
+        activations (Iterable[str]): List of activation functions.
         
     Shape:
         - Input: :math:`(*)` where :math:`*` means any number of additional dimensions.
@@ -32,8 +31,8 @@ class LinComb(nn.Module):
     
     def __init__(self, activations: Iterable[str]):
         super(LinComb, self).__init__()
-        self.activation_functions = nn.ModuleList(activations)
-        self.weights = nn.Parameter(torch.Tensor(len(activations)))
+        self.activations = nn.ModuleList(activations)
+        self.weights = nn.Parameter(Tensor(len(activations)))
 
         self.weights.data.uniform_(-1, 1)
 
@@ -48,11 +47,11 @@ class NormLinComb(nn.Module):
     Applies the LinComb activation function:
     
     :math:`\text{NormLinComb}(x) = \frac{\sum_{i=1}^{n} w_i \cdot F_i(x)}{\|\|W\|\|}`
-    
-    A version of `LinComb` with normalized linear combination using weight's norm.
+
+     See: https://doi.org/10.20944/preprints202301.0463.v1
     
     Args:
-        activations (): List of activation functions.
+        activations (Iterable[str]): List of activation functions.
         
     Shape:
         - Input: :math:`(*)` where :math:`*` means any number of additional dimensions.
@@ -67,9 +66,9 @@ class NormLinComb(nn.Module):
     """
     
     def __init__(self, activations: Iterable[str]):
-        super(LinComb, self).__init__()
-        self.activation_functions = nn.ModuleList(activations)
-        self.weights = nn.Parameter(torch.Tensor(len(activations)))
+        super(NormLinComb, self).__init__()
+        self.activations = nn.ModuleList(activations)
+        self.weights = nn.Parameter(Tensor(len(activations)))
 
         self.weights.data.uniform_(-1, 1)
 

@@ -11,6 +11,8 @@ class ShiLU(nn.Module):
 
     :math:`\text{ShiLU}(x) = \alpha \cdot \text{ReLU}(x) + \beta`
     
+     See: https://doi.org/10.20944/preprints202301.0463.v1
+   
     Args:
         alpha (float, optional): Scaling factor for the positive part of the input. Default: 1.0.
         beta (float, optional): Bias term added to the output. Default: 0.0.
@@ -36,8 +38,8 @@ class ShiLU(nn.Module):
     def __init__(self, alpha: float = 1.0, beta: float = 0.0, 
                  inplace: bool = False):
         super().__init__()
-        self.alpha = nn.Parameter(torch.tensor(alpha))
-        self.beta = nn.Parameter(torch.tensor(beta))
+        self.alpha = nn.Parameter(Tensor(alpha))
+        self.beta = nn.Parameter(Tensor(beta))
         self.inplace = inplace
 
     def forward(self, x) -> Tensor:
@@ -55,7 +57,9 @@ class CReLU(nn.Module):
     Applies the Concatenated Rectified Linear Unit activation function.
 
     :math:`\text{CReLU}(x) = \text{ReLU}(x) \oplus \text{ReLU}(-x)`
-
+    
+     See: https://doi.org/10.48550/arXiv.1603.05201
+   
     Args:
         dim (int, optional): Dimension along which to concatenate in the output tensor. Default: 1
         inplace (bool, optional): can optionally do the operation in-place. Default: ``False``
@@ -87,7 +91,9 @@ class ReLUN(nn.Module):
     r"""Applies the element-wise function:
 
     :math:`\text{ReLUN}(x) = \min(\text{ReLU}(x), n)`
-
+    
+     See: https://doi.org/10.20944/preprints202301.0463.v1
+   
     Args:
         n (float, optional): Upper bound for the function's output. Default is 1.0.
         inplace (bool, optional): can optionally do the operation in-place. Default: ``False``
@@ -110,7 +116,7 @@ class ReLUN(nn.Module):
 
     def __init__(self, n: float = 1.0, inplace: bool = False):
         super(ReLUN, self).__init__()
-        self.n = nn.Parameter(torch.tensor(n))
+        self.n = nn.Parameter(Tensor(n))
         self.inplace = inplace
 
     def forward(self, x) -> Tensor:
@@ -131,6 +137,8 @@ class SquaredReLU(nn.Module):
     Args:
         inplace (bool, optional): can optionally do the operation in-place. Default: ``False``
 
+     See: https://arxiv.org/pdf/2109.08668.pdf
+     
     Shape:
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
         - Output: :math:`(*)`, same shape as the input.
@@ -163,6 +171,8 @@ class StarReLU(nn.Module):
 
     :math:`\text{StarReLU}(x) = s \cdot \text{ReLU}(x)^2 + b`
 
+     See: https://doi.org/10.48550/arXiv.2210.13452
+
     Args:
         s (float, optional): Scaled factor for StarReLU, shared across channel. Default: 0.8944
         b (float, optional): Bias term for StarReLU, shared across channel. Default: -0.4472
@@ -190,12 +200,12 @@ class StarReLU(nn.Module):
                  learnable: bool = True, inplace: bool = False):
         super().__init__()
         self.inplace = inplace
-        if learnable:
-            self.s = nn.Parameter(torch.tensor(s))
-            self.b = nn.Parameter(torch.tensor(b))
+        if learnable: 
+            self.s = nn.Parameter(Tensor(s))
+            self.b = nn.Parameter(Tensor(b))
         else:
-            self.s = torch.tensor(s)
-            self.b = torch.tensor(b)
+            self.s = Tensor(s)
+            self.b = Tensor(b)
 
     def forward(self, x) -> Tensor:
         if self.inplace:
@@ -204,7 +214,3 @@ class StarReLU(nn.Module):
                              .add_(self.b)
         else:
             return self.s * F.relu(x).pow(2) + self.b
-
-
-if __name__ == '__main__':
-    pass
