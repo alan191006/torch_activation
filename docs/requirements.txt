@@ -2,7 +2,6 @@ torch
 psutil
 plotly
 Babel
-torch-activation
 imagesize
 jinja2
 readme-renderer

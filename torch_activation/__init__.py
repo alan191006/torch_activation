@@ -14,4 +14,4 @@ __all__ = ["ShiLU", "DELU", "CReLU", "GCU",
            "LinComb", "NormLinComb", "SinLU", "Phish",
            "StarReLU", "plot_activation",]
 
-__version__ = "0.2.0"
+__version__ = "0.2.1"
