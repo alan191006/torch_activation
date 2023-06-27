@@ -1,12 +1,21 @@
 import os
+import math
 import torch
 import psutil
 import plotly
+import plotly.io as pio
 import plotly.graph_objects as go
 
 
-def plot_activation(activation: torch.nn.Module, params: dict, save_dir="./images/activation_images",
-                    x_range=(-5, 5), y_range=None, preview=False, plot_derivative=True):
+def plot_activation(
+    activation: torch.nn.Module,
+    params: dict = {},
+    save_dir="./images/activation_images",
+    x_range=(-5, 5),
+    y_range=None,
+    preview=False,
+    plot_derivative=True,
+):
     """
     Plot the activation function and optionally its derivative.
 
@@ -35,40 +44,109 @@ def plot_activation(activation: torch.nn.Module, params: dict, save_dir="./image
 
     """
     x = torch.linspace(x_range[0], x_range[1], 1000)
+    x.requires_grad = True  # Enable gradient computation for x
 
     fig = go.Figure()
 
-    # Color for each param
-    colors = plotly.colors.qualitative.D3[:len(params)]
+    num_plots = max(len(v) for v in params.values()) if params else 0
 
-    for param_name, param_value, color in zip(params.keys(), params.values(), colors):
-        m = activation(**{param_name: param_value})
+    # Color for each param
+    colors = plotly.colors.qualitative.D3[:max(1, num_plots)]
+
+    if num_plots == 0:
+        # Add default plot with no parameter variations
+        m = activation()
         y = m(x)
 
-        label = f"{param_name}: {param_value}"
-
-        # Determine the y-axis range
         if y_range is None:
             y_min = torch.min(y).item()
             y_max = torch.max(y).item()
             y_padding = (y_max - y_min) * 0.1  # Add a 10% padding
             y_range = (y_min - y_padding, y_max + y_padding)
 
-        fig.add_trace(go.Scatter(x=x.detach().numpy(),
-                                 y=y.detach().numpy(), name=label, line=dict(color=color)))
+        fig.add_trace(
+            go.Scatter(
+                x=x.detach().numpy(),
+                y=y.detach().numpy(),
+                name=activation.__name__,
+                line=dict(color=colors[0]),
+            )
+        )
 
         if plot_derivative:
-            d = torch.autograd.grad(y, x, create_graph=True)[0]
-            fig.add_trace(go.Scatter(x=x.detach().numpy(),
-                                     y=d.detach().numpy(), name=f"Derivative {label}", line=dict(color=color, dash='dash')))
+            d = torch.autograd.grad(
+                y, x, torch.ones_like(y), create_graph=True
+            )[0]
+            fig.add_trace(
+                go.Scatter(
+                    x=x.detach().numpy(),
+                    y=d.detach().numpy(),
+                    name=f"d/dx {activation.__name__}",
+                    line=dict(color=colors[0], dash="dot"),
+                )
+            )
 
-    fig.update_layout(xaxis=dict(range=x_range), yaxis=dict(range=y_range), legend=dict(title="Params"))
+    else:
+        param_combinations = torch.tensor([[v for v in params[key]] for key in params.keys()]).T
+
+        y_ = []
+        for i, combination in enumerate(param_combinations):
+            kwargs = {key: value for key, value in zip(params.keys(), combination)}
+
+            m = activation(**kwargs)
+            y = m(x)
+            y_.append(y)
+
+            label = f"{activation.__name__}(" + ", ".join([f"{key}={value}" for key, value in kwargs.items()]) + ")"
+
+            fig.add_trace(
+                go.Scatter(
+                    x=x.detach().numpy(),
+                    y=y.detach().numpy(),
+                    name=label,
+                    line=dict(color=colors[i % len(colors)]),
+                )
+            )
+
+            if plot_derivative:
+                d = torch.autograd.grad(
+                    y, x, torch.ones_like(y), create_graph=True
+                )[0]
+                fig.add_trace(
+                    go.Scatter(
+                        x=x.detach().numpy(),
+                        y=d.detach().numpy(),
+                        name=f"d/dx {label}",
+                        line=dict(color=colors[i % len(colors)], dash="dot"),
+                    )
+                )
+        
+        y_ = torch.stack(y_)
+        
+        if y_range is None:
+            y_min = torch.min(y_).item()
+            y_max = torch.max(y_).item()
+            y_padding = (y_max - y_min) * 0.1  # Add a 10% padding
+            y_range = (y_min - y_padding, y_max + y_padding)
+
+    y_range = list(y_range)
+    if y_range[1] - y_range[0] > 3:
+        y_range[0] = math.floor(y_range[0])
+        y_range[1] = math.ceil(y_range[1])
+    
+    fig.update_layout(
+        paper_bgcolor='rgba(0,0,0,0)',
+        xaxis=dict(range=x_range),
+        yaxis=dict(range=y_range),
+        legend=dict(orientation="h", yanchor="top", y=-0.2, xanchor="center", x=0.5),
+    )
 
     if preview:
         fig.show()
 
-    file_name = os.path.join(save_dir, type(activation).__name__ + '.png')
-    fig.write_image(file_name)
+    os.makedirs(save_dir, exist_ok=True)
+    file_name = os.path.join(save_dir, f"{activation.__name__}.png")
+    pio.write_image(fig, file_name)
     print(f"Image saved as {file_name}")
 
 

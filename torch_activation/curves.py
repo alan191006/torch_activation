@@ -19,6 +19,10 @@ class CoLU(nn.Module):
     Shape:
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
         - Output: :math:`(*)`, same shape as the input.
+        
+    Here is a plot of the function and its derivative:
+        
+    .. image:: ../images/activation_images/CoLU.png
 
     Examples::
 
@@ -51,12 +55,16 @@ class ScaledSoftSign(torch.nn.Module):
      See: https://doi.org/10.20944/preprints202301.0463.v1
    
     Args:
-        alpha (float, optional): The initial value of the alpha parameter.
-        beta (float, optional): The initial value of the beta parameter.
+        alpha (float, optional): The initial value of the alpha parameter. Default: 1.0
+        beta (float, optional): The initial value of the beta parameter. Default: 1.0
 
     Shape:
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
         - Output: :math:`(*)`, same shape as the input.
+        
+    Here is a plot of the function and its derivative:
+        
+    .. image:: ../images/activation_images/ScaledSoftSign.png
 
     Examples:
         >>> m = ScaledSoftSign(alpha=0.5, beta=1.0)
@@ -72,8 +80,8 @@ class ScaledSoftSign(torch.nn.Module):
         
         super(ScaledSoftSign, self).__init__()
 
-        self.alpha = torch.nn.Parameter(Tensor(alpha))
-        self.beta = torch.nn.Parameter(Tensor(beta))
+        self.alpha = torch.nn.Parameter(Tensor([alpha]))
+        self.beta = torch.nn.Parameter(Tensor([beta]))
 
     def forward(self, x) -> Tensor:
         abs_x = x.abs()
@@ -87,13 +95,17 @@ class Phish(torch.nn.Module):
     r"""
     Applies the Phish activation function:
 
-    :math:`\text{Phish}(x) = x \odot \tanh (\text{GELU} (x))`
+    :math:`\text{Phish}(x) = x \cdot \tanh (\text{GELU} (x))`
 
      See: `Phish: A Novel Hyper-Optimizable Activation Function`_.
      
     Shape:
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
         - Output: :math:`(*)`, same shape as the input.
+        
+    Here is a plot of the function and its derivative:
+        
+    .. image:: ../images/activation_images/Phish.png
 
     Examples:
         >>> m = Phish()
@@ -108,8 +120,10 @@ class Phish(torch.nn.Module):
         super(Phish, self).__init__()
 
     def forward(self, x) -> Tensor:
-        x *= F.tanh(F.gelu(x))
-        return x
+        output = F.gelu(x)
+        output = F.tanh(output)
+        output = x * output
+        return output
 
 
 if __name__ == "__main__":

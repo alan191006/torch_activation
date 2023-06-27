@@ -11,7 +11,7 @@ __all__ = ["ShiLU", "DELU", "CReLU", "GCU",
            "CosLU", "CoLU", "ReLUN",
            "SquaredReLU", "ScaledSoftSign",
            "ReGLU", "GeGLU", "SeGLU", "SwiGLU",
-           "LinComb", "NormLinComb", "SinLU",
-           "DReLUs", "StarReLU", "plot_activation",]
+           "LinComb", "NormLinComb", "SinLU", "Phish",
+           "StarReLU", "plot_activation",]
 
 __version__ = "0.2.0"

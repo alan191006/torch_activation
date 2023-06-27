@@ -1,2 +1,4 @@
+numpy
 plotly
+kaleido
 torch >= 1.1.0

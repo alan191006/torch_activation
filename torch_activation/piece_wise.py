@@ -20,6 +20,10 @@ class DELU(nn.Module):
     Shape:
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
         - Output: :math:`(*)`, same shape as the input.
+        
+    Here is a plot of the function and its derivative:
+        
+    .. image:: ../images/activation_images/DELU.png
 
     Examples:
         >>> m = nn.DELU()
@@ -33,7 +37,7 @@ class DELU(nn.Module):
 
     def __init__(self, n: float = 1.0, inplace: bool = False):
         super(DELU, self).__init__()
-        self.n = torch.nn.Parameter(Tensor(n))
+        self.n = torch.nn.Parameter(Tensor([n]))
         self.inplace = inplace
 
     def forward(self, x) -> Tensor:

@@ -1,20 +1,46 @@
-import os
-import sys
-import inspect
+from torch_activation import *
+
+# ReLUs
+relun_p = {"n": [1, 3]}
+shilu_p = {"alpha": [1, 2],
+           "beta": [0, 1]}
+
+plot_activation(ReLUN, relun_p)
+plot_activation(ShiLU, shilu_p)
+plot_activation(SquaredReLU)
+plot_activation(StarReLU)
 
 
-folder_path = os.path.abspath("torch_activation")
-sys.path.append(folder_path)
+# Piece-wise
 
-init_file_path = os.path.join(folder_path, "__init__.py")
+delu_p = {"n": [1, 3]}
+
+plot_activation(DELU, delu_p)
 
 
-class_names = []
-module = __import__(folder_path, fromlist=[""])
+# Trig
 
-for name, obj in inspect.getmembers(module):
-    if inspect.isclass(obj) and obj.__module__ == "__init__":
-        class_names.append(name)
+coslu_p = {"a": [1, 2],
+           "b": [1, 1]}
+sinlu_p = {"a": [1, 2],
+           "b": [1, 1]}
 
-for class_name in class_names:
-    print(class_name)
+plot_activation(CosLU, coslu_p)
+plot_activation(SinLU, sinlu_p)
+plot_activation(GCU)
+
+
+# Curves
+
+s3_p = {"alpha": [1, 2],
+        "beta": [1, 2]}
+
+plot_activation(CoLU)
+plot_activation(Phish)
+plot_activation(ScaledSoftSign, s3_p, y_range=(-2, 2))
+
+
+# LinComb
+
+plot_activation(LinComb)
+plot_activation(NormLinComb)

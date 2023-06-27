@@ -22,6 +22,10 @@ class GCU(nn.Module):
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
         - Output: :math:`(*)`, same shape as the input.
         
+    Here is a plot of the function and its derivative:
+        
+    .. image:: ../images/activation_images/GCU.png
+        
     Examples::
 
         >>> m = nn.GCU()
@@ -48,7 +52,7 @@ class CosLU(nn.Module):
     r"""
     Applies the Cosine Linear Unit function:
 
-    :math:`\text{CosLU}(x) = (x + a \cdot \cos(b x)) \cdot \sigma(x)`
+    :math:`\text{CosLU}(x) = (x + a \cdot \cos(b \cdot x)) \cdot \sigma(x)`
     
      See: https://doi.org/10.20944/preprints202301.0463.v1
    
@@ -60,6 +64,10 @@ class CosLU(nn.Module):
     Shape:
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
         - Output: :math:`(*)`, same shape as the input.
+        
+    Here is a plot of the function and its derivative:
+        
+    .. image:: ../images/activation_images/CosLU.png
 
     Examples::
 
@@ -75,8 +83,8 @@ class CosLU(nn.Module):
     def __init__(self, a: float = 1.0, b: float = 1.0, 
                  inplace: bool = False):
         super(CosLU, self).__init__()
-        self.alpha = nn.Parameter(Tensor(a))
-        self.beta = nn.Parameter(Tensor(b))
+        self.alpha = nn.Parameter(Tensor([a]))
+        self.beta = nn.Parameter(Tensor([b]))
         self.inplace = inplace
 
     def forward(self, x) -> Tensor:
@@ -98,7 +106,7 @@ class SinLU(nn.Module):
     r"""
     Applies the Sinu-sigmoidal Linear Unit activation function:
 
-    :math:`\text{SinLU}(x) = (x + \alpha \sin (\beta x)) \sigma (x)`
+    :math:`\text{SinLU}(x) = (x + a \cdot \sin (b \cdot x)) \sigma (x)`
     
      See: https://doi.org/10.3390/math10030337
     
@@ -110,6 +118,10 @@ class SinLU(nn.Module):
     Shape:
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
         - Output: :math:`(*)`, same shape as the input.
+        
+    Here is a plot of the function and its derivative:
+        
+    .. image:: ../images/activation_images/SinLU.png
 
     Examples::
 
@@ -120,8 +132,8 @@ class SinLU(nn.Module):
     def __init__(self, a: float = 1.0, b: float = 1.0, 
                  inplace: bool = False):
         super(SinLU, self).__init__()
-        self.alpha = nn.Parameter(Tensor(a))
-        self.beta = nn.Parameter(Tensor(b))
+        self.alpha = nn.Parameter(Tensor([a]))
+        self.beta = nn.Parameter(Tensor([b]))
         self.inplace = inplace
 
     def forward(self, x) -> Tensor:

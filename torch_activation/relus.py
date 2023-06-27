@@ -21,6 +21,8 @@ class ShiLU(nn.Module):
     Shape:
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
         - Output: :math:`(*)`, same shape as the input.
+        
+    Here is a plot of the function and its derivative:
 
     .. image:: ../images/activation_images/ShiLU.png
 
@@ -38,8 +40,8 @@ class ShiLU(nn.Module):
     def __init__(self, alpha: float = 1.0, beta: float = 0.0, 
                  inplace: bool = False):
         super().__init__()
-        self.alpha = nn.Parameter(Tensor(alpha))
-        self.beta = nn.Parameter(Tensor(beta))
+        self.alpha = nn.Parameter(Tensor([alpha]))
+        self.beta = nn.Parameter(Tensor([beta]))
         self.inplace = inplace
 
     def forward(self, x) -> Tensor:
@@ -101,6 +103,10 @@ class ReLUN(nn.Module):
     Shape:
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
         - Output: :math:`(*)`, same shape as the input.
+        
+    Here is a plot of the function and its derivative:
+        
+    .. image:: ../images/activation_images/ReLUN.png
 
     Examples::
 
@@ -116,16 +122,14 @@ class ReLUN(nn.Module):
 
     def __init__(self, n: float = 1.0, inplace: bool = False):
         super(ReLUN, self).__init__()
-        self.n = nn.Parameter(Tensor(n))
+        self.n = nn.Parameter(Tensor([n]))
         self.inplace = inplace
 
     def forward(self, x) -> Tensor:
         if self.inplace:
-            x.clamp_max_(self.n.data)
-            x.relu_()
-            return x
+            return x.clamp_(0, self.n.item())
         else:
-            return torch.clamp(x, 0, self.n.data)
+            return torch.clamp(x, 0, self.n.item())
 
 
 class SquaredReLU(nn.Module):
@@ -142,6 +146,10 @@ class SquaredReLU(nn.Module):
     Shape:
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
         - Output: :math:`(*)`, same shape as the input.
+        
+    Here is a plot of the function and its derivative:
+        
+    .. image:: ../images/activation_images/SquaredReLU.png
 
     Examples::
 
@@ -176,14 +184,14 @@ class StarReLU(nn.Module):
     Args:
         s (float, optional): Scaled factor for StarReLU, shared across channel. Default: 0.8944
         b (float, optional): Bias term for StarReLU, shared across channel. Default: -0.4472
-        learnable (bool, optional): optionally make ``s`` and ``b`` trainable. Default: ``True``
+        learnable (bool, optional): optionally make ``s`` and ``b`` trainable. Default: ``False``
         inplace (bool, optional): can optionally do the operation in-place. Default: ``False``
 
     Shape:
         - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
         - Output: :math:`(*)`, same shape as the input.
         
-    .. image:: ../images/activation_images/SquaredReLU.png
+    .. image:: ../images/activation_images/StarReLU.png
 
     Examples::
 
@@ -197,15 +205,15 @@ class StarReLU(nn.Module):
     """
 
     def __init__(self, s: float = 0.8944, b: float = -0.4472, 
-                 learnable: bool = True, inplace: bool = False):
+                 learnable: bool = False, inplace: bool = False):
         super().__init__()
         self.inplace = inplace
         if learnable: 
-            self.s = nn.Parameter(Tensor(s))
-            self.b = nn.Parameter(Tensor(b))
+            self.s = nn.Parameter(Tensor([s]))
+            self.b = nn.Parameter(Tensor([b]))
         else:
-            self.s = Tensor(s)
-            self.b = Tensor(b)
+            self.s = Tensor([s])
+            self.b = Tensor([b])
 
     def forward(self, x) -> Tensor:
         if self.inplace:
